@@ -4,16 +4,19 @@ const SplashPage = () => {
   const registered = true;
   return (
     <div>
-      <img src={logo} alt="" />
+      {/* <img src={logo} alt="" /> */}
+      {/* <form>
+        <label>
+          Username: <input type="text" />
+        </label>
+        <label>
+          Password:
+          <input type="password" />
+        </label>
+      </form> */}
       <form>
-      <label>
-        Username:
-        <input type="text" />
-      </label>
-      <label>
-        Password:
-        <input type="password" />
-      </label>
+        <label>Username:</label>
+        <label>Password:</label>
       </form>
       <Link to={`${registered ? "/dashboard" : "/register"}`}>
         <button>Login</button>

@@ -1,0 +1,10 @@
+//General
+@use "./_variables";
+@use "./fonts";
+@use "./_basic-styles"; //needs to be first, because of reset at the beginning!
+
+//Components
+@use "./_components";
+
+//Pages
+@use "./UIKitpage";

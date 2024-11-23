@@ -1,0 +1,25 @@
+@use "./variables" as vars;
+
+//Navbar
+nav {
+  background-color: vars.$color_2;
+  height: 70px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    height: 100%;
+    padding: 5px;
+  }
+
+  a {
+    text-decoration: none;
+    margin-inline: 10px;
+    padding-inline: 10px;
+  }
+}

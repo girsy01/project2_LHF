@@ -1,0 +1,29 @@
+@use "./variables" as vars;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: vars.$color_1;
+  color: vars.$color_9;
+  font-family: Poppins;
+}
+
+a {
+  text-decoration: none;
+  color: vars.$color_9;
+}
+
+hr {
+  margin: 10px;
+}
+
+.wrapper {
+  max-width: vars.$wrapper-width;
+  margin-inline: auto;
+  height: 100%;
+  padding-inline: 20px;
+}
