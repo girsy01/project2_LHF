@@ -4,7 +4,7 @@ import axios from "axios"
 // import logo from "../assets/logo.png";
 const SplashPage = () => {
   let registered
-  const [user, setUser] = useState("");
+  const [users, setUsers] = useState([]);
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
@@ -13,14 +13,13 @@ const SplashPage = () => {
     e.preventDefault();
     axios
       .get("http://localhost:5005/users")
-      .then((response) => response.data)
-      .then(({data}) => {
-       data.map((user) => {
+      .then((response) => setUsers(response.data))
+      .then(users.map((user) => {
         if(!user.user_name) {
-          registered = false;
-        } else registered = true;
-       })
+          navigate("/register")
+        }else navigate(`/dashboard/${user.id}`)
       })
+      )
       .catch((error) => {
         console.log(error);
       });
@@ -35,8 +34,8 @@ const SplashPage = () => {
           <input
             type="text"
             name="user"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
+            value={users}
+            onChange={(e) => setUsers(e.target.value)}
           />
         </label>
         <label>
