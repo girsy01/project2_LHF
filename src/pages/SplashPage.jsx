@@ -6,21 +6,16 @@ const SplashPage = () => {
     <div>
       {/* <img src={logo} alt="" /> */}
       <form>
-        <label>
-          Username: <input type="text" />
-        </label>
-        <label>
-          Password:
-          <input type="password" />
-        </label>
-      </form>
-      <form>
         <label>Username:</label>
+        <input type="text" />
+
         <label>Password:</label>
+        <input type="password" />
+
+        <Link to={`${registered ? "/dashboard" : "/register"}`}>
+          <button className="btn-dark">Login</button>
+        </Link>
       </form>
-      <Link to={`${registered ? "/dashboard" : "/register"}`}>
-        <button>Login</button>
-      </Link>
     </div>
   );
 };
