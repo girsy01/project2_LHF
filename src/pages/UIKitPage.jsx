@@ -1,10 +1,7 @@
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import heartSVGred from "../assets/heart-svg-red.svg";
-import heartSVGnoFill from "../assets/heart-svg-noFill.svg";
-import movieSVG from "../assets/movie-svg.svg";
-import bookSVG from "../assets/book-svg.svg";
-import musicSVG from "../assets/music-svg.svg";
+import ItemCard from "../components/ItemCard";
+import Navbar from "../components/Navbar";
+import SearchBar from "../components/SearchBar";
 
 const UIKitPage = () => {
   return (
@@ -32,89 +29,43 @@ const UIKitPage = () => {
 
       <hr />
 
+      <h2>Search Bar:</h2>
+      <SearchBar />
+
+      <hr />
+
       <h2>Item Cards:</h2>
       <div className="card-container">
-        <div className="card">
-          <img
-            src="https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-          />
-          <div className="like pos-absolute-right ">
-            <img src={heartSVGnoFill} className="liked" />
-            {/* <img src={heartSVGred} className="liked" /> */}
-          </div>
-          <div className="category-icon pos-absolute-left ">
-            <img src={movieSVG} />
-          </div>
-
-          <div className="card-infos">
-            <div className="details">
-              <h2>Title of item</h2>
-              <p>Category</p>
-            </div>
-            <div className="total-likes">
-              <div>10</div>
-              <div className="like">
-                <img src={heartSVGred} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card">
-          <img
-            src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-          />
-          <div className="like pos-absolute-right ">
-            {/* <img src={heartSVGnoFill} className="liked" /> */}
-            <img src={heartSVGred} className="liked" />
-          </div>
-          <div className="category-icon pos-absolute-left ">
-            <img src={bookSVG} />
-          </div>
-
-          <div className="card-infos">
-            <div className="details">
-              <h2>Title of item</h2>
-              <p>Category</p>
-            </div>
-            <div className="total-likes">
-              <div>10</div>
-              <div className="like">
-                <img src={heartSVGred} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card">
-          <img
-            src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bXVzaWN8ZW58MHx8MHx8fDA%3D"
-            alt=""
-          />
-          <div className="like pos-absolute-right ">
-            <img src={heartSVGnoFill} className="liked" />
-            {/* <img src={heartSVGred} className="liked" /> */}
-          </div>
-          <div className="category-icon pos-absolute-left ">
-            <img src={musicSVG} />
-          </div>
-
-          <div className="card-infos">
-            <div className="details">
-              <h2>Title of item</h2>
-              <p>Category</p>
-            </div>
-            <div className="total-likes">
-              <div>10</div>
-              <div className="like">
-                <img src={heartSVGred} />
-              </div>
-            </div>
-          </div>
-        </div>
+        <ItemCard category={"movie"} />
+        <ItemCard category={"book"} />
+        <ItemCard category={"music"} />
       </div>
+
+      <hr />
+
+      <h2>Form:</h2>
+      <form>
+        <h2>Edit item</h2>
+        <label>Title:</label>
+        <input type="text" />
+
+        <label>Rating:</label>
+        <input type="number" />
+
+        <label for="gender">Category:</label>
+        <select id="gender" name="gender">
+          <option value="" disabled selected>
+            Select category
+          </option>
+          <option value="movie">Movie</option>
+          <option value="book">Book</option>
+          <option value="music">Music</option>
+        </select>
+
+        <div className="flex-center">
+          <button className="btn-dark">Save changes</button>
+        </div>
+      </form>
     </div>
   );
 };

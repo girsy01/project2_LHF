@@ -128,3 +128,56 @@ button {
     padding: 8px;
   }
 }
+
+form {
+  background-color: vars.$color_1;
+  padding: 20px 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(150, 150, 150, 0.3);
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+form h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.search {
+  max-width: 75%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  margin-bottom: 20px;
+  color: #595959;
+}
+
+input:focus,
+select:focus {
+  border-color: vars.$color_6;
+  outline: none;
+}
+
+select {
+  cursor: pointer;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
