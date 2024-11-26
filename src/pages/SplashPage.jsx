@@ -5,7 +5,7 @@ const SplashPage = () => {
   return (
     <div>
       {/* <img src={logo} alt="" /> */}
-      {/* <form>
+      <form>
         <label>
           Username: <input type="text" />
         </label>
@@ -13,7 +13,7 @@ const SplashPage = () => {
           Password:
           <input type="password" />
         </label>
-      </form> */}
+      </form>
       <form>
         <label>Username:</label>
         <label>Password:</label>

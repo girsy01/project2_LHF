@@ -17,9 +17,28 @@ nav {
     padding: 5px;
   }
 
+  .menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
   a {
+    height: 100%;
     text-decoration: none;
     margin-inline: 10px;
     padding-inline: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .img-profile {
+    height: 50%;
+    background-color: vars.$color_5;
+    border-radius: 50px;
+  }
+  img {
+    height: 100%;
+    padding: 0;
   }
 }

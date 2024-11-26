@@ -1,15 +1,16 @@
 import logo from "../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
+import userImage from "../assets/user.png"; // Import the user image
 
 const Navbar = () => {
-  return (
+  https: return (
     <nav>
       <div className="wrapper">
-        <Link>
+        <Link to="/">
           <img src={logo} alt="" />
         </Link>
 
-        <div>
+        <div className="menu">
           <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "selected" : "")}>
             Dashboard
           </NavLink>
@@ -19,7 +20,11 @@ const Navbar = () => {
           <NavLink to="#" className={({ isActive }) => (isActive ? "selected" : "")}>
             About
           </NavLink>
-          <img className="img-profile" src="" />
+          <Link>
+            <div className="img-profile">
+              <img src={userImage} />
+            </div>
+          </Link>
         </div>
       </div>
     </nav>
