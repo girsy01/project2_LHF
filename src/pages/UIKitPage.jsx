@@ -39,6 +39,7 @@ const UIKitPage = () => {
         <ItemCard category={"movie"} />
         <ItemCard category={"book"} />
         <ItemCard category={"music"} />
+        <ItemCard category={"event"} />
       </div>
 
       <hr />
