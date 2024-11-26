@@ -33,6 +33,8 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "no-unused-vars" : false,
+      "react-prop-types": "off",
     },
   },
 ]
