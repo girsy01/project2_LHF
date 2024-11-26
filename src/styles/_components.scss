@@ -1,0 +1,44 @@
+@use "./variables" as vars;
+
+//Navbar
+nav {
+  background-color: vars.$color_2;
+  height: 70px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a img {
+    height: 100%;
+    padding: 5px;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  a {
+    height: 100%;
+    text-decoration: none;
+    margin-inline: 10px;
+    padding-inline: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .img-profile {
+    height: 50%;
+    background-color: vars.$color_5;
+    border-radius: 50px;
+  }
+  img {
+    height: 100%;
+    padding: 0;
+  }
+}
