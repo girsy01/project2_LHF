@@ -18,6 +18,7 @@ const AddInterestPage = () => {
     }));
   };
 
+<<<<<<< HEAD
   const handleFormSubmit = (event) => {
     event.preventDefault();
   };
@@ -37,6 +38,13 @@ const AddInterestPage = () => {
                 mediaType: e.target.value,
                 searchParams: {},
               }))
+=======
+        setFormData(prev => ({
+            ...prev,
+            searchParams: {
+                ...prev.searchParams,
+                [name]: type === 'checkbox' ? checked : value
+>>>>>>> Luke
             }
           >
             <option value="movie">Movie</option>
@@ -45,6 +53,7 @@ const AddInterestPage = () => {
             <option value="event">Event</option>
           </select>
         </div>
+<<<<<<< HEAD
         {/* Movie Fields */}
         {formData.mediaType === "movie" && (
           <>
@@ -171,6 +180,194 @@ const AddInterestPage = () => {
             </div>
           </>
         )}
+=======
+                {/* Movie Fields (TMDB API) */}
+                {formData.mediaType === 'movie' && (
+                <>
+                    <div className="form-group">
+                    <label>Movie Title</label>
+                    <input
+                        type="text"
+                        name="query"
+                        value={formData.searchParams.query || ''}
+                        onChange={handleChange}
+                        placeholder="Enter movie title"
+                        required
+                    />
+                    <small className="input-help">Required for movie search</small>
+                    </div>
+
+                    <div className="form-group">
+                    <label>Release Year</label>
+                    <input
+                        type="number"
+                        name="year"
+                        value={formData.searchParams.year || ''}
+                        onChange={handleChange}
+                        placeholder="Enter release year"
+                        min="1900"
+                        max="2030"
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>Language</label>
+                    <select
+                        name="language"
+                        value={formData.searchParams.language || 'en-US'}
+                        onChange={handleChange}
+                    >
+                        <option value="en-US">English</option>
+                        <option value="es-ES">Spanish</option>
+                        <option value="fr-FR">French</option>
+                    </select>
+                    </div>
+
+                    <div className="form-group checkbox-group">
+                    <label>
+                        <input
+                        type="checkbox"
+                        name="include_adult"
+                        checked={formData.searchParams.include_adult || false}
+                        onChange={handleChange}
+                        />
+                        Include Adult Content
+                    </label>
+                    </div>
+                </>
+                )}
+
+                {/* Music Fields (Spotify/Last.fm) */}
+                {formData.mediaType === 'music' && (
+                <>
+                    <div className="form-group">
+                    <label>Track Name</label>
+                    <input
+                        type="text"
+                        name="track"
+                        value={formData.searchParams.track || ''}
+                        onChange={handleChange}
+                        placeholder="Enter song name"
+                        required
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>Artist</label>
+                    <input
+                        type="text"
+                        name="artist"
+                        value={formData.searchParams.artist || ''}
+                        onChange={handleChange}
+                        placeholder="Enter artist name"
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>Album</label>
+                    <input
+                        type="text"
+                        name="album"
+                        value={formData.searchParams.album || ''}
+                        onChange={handleChange}
+                        placeholder="Enter album name"
+                    />
+                    </div>
+                </>
+                )}
+
+                {/* Book Fields (Google Books API) */}
+                {formData.mediaType === 'book' && (
+                <>
+                    <div className="form-group">
+                    <label>Book Title</label>
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.searchParams.title || ''}
+                        onChange={handleChange}
+                        placeholder="Enter book title"
+                        required
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>Author</label>
+                    <input
+                        type="text"
+                        name="author"
+                        value={formData.searchParams.author || ''}
+                        onChange={handleChange}
+                        placeholder="Enter author name"
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>ISBN</label>
+                    <input
+                        type="text"
+                        name="isbn"
+                        value={formData.searchParams.isbn || ''}
+                        onChange={handleChange}
+                        placeholder="Enter ISBN"
+                    />
+                    </div>
+                </>
+                )}
+
+                {/* Event Fields (Ticketmaster API) */}
+                {formData.mediaType === 'event' && (
+                <>
+                    <div className="form-group">
+                    <label>Event Name</label>
+                    <input
+                        type="text"
+                        name="keyword"
+                        value={formData.searchParams.keyword || ''}
+                        onChange={handleChange}
+                        placeholder="Enter event name"
+                        required
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>City</label>
+                    <input
+                        type="text"
+                        name="city"
+                        value={formData.searchParams.city || ''}
+                        onChange={handleChange}
+                        placeholder="Enter city"
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>Date Range</label>
+                    <input
+                        type="date"
+                        name="startDate"
+                        value={formData.searchParams.startDate || ''}
+                        onChange={handleChange}
+                    />
+                    </div>
+
+                    <div className="form-group">
+                    <label>Category</label>
+                    <select
+                        name="category"
+                        value={formData.searchParams.category || ''}
+                        onChange={handleChange}
+                    >
+                        <option value="">All Categories</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="arts">Arts & Theatre</option>
+                        <option value="family">Family</option>
+                    </select>
+                    </div>
+                </>
+                )}
+>>>>>>> Luke
 
         <div className="form-group">
           <button type="submit">Search</button>
