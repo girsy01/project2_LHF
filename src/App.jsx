@@ -15,7 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<SplashPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard/:userId" element={<DashboardPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/uikit" element={<UIKitPage />} />
         <Route path="*" element={<NotFoundPage />} />
