@@ -2,7 +2,7 @@
 
 //Navbar
 nav {
-  background-color: vars.$color_2;
+  background-color: vars.$color_5;
   height: 70px;
 
   .wrapper {
@@ -15,6 +15,10 @@ nav {
   a img {
     height: 100%;
     padding: 5px;
+  }
+
+  .img-profile img {
+    padding: 0;
   }
 
   .menu {
@@ -44,7 +48,6 @@ nav {
 }
 
 //Card
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -57,8 +60,9 @@ nav {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  background-color: vars.$color_2;
+  background-color: vars.$color_5;
   position: relative;
+  color: vars.$color_9;
 
   img {
     width: 250px;
@@ -69,6 +73,8 @@ nav {
 
   h2 {
     font-size: 1.4rem;
+    margin: 0;
+    text-align: left;
   }
 
   .card-infos {

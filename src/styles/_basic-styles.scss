@@ -7,9 +7,22 @@
 }
 
 body {
-  background-color: vars.$color_1;
-  color: vars.$color_9;
+  background-color: vars.$color_8;
+  color: vars.$color_2;
   font-family: Poppins;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin: 30px 0 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 10px 0;
 }
 
 a {
@@ -18,7 +31,7 @@ a {
 }
 
 hr {
-  margin: 10px;
+  margin: 50px 0 30px;
 }
 
 .wrapper {
@@ -49,7 +62,8 @@ button {
 
 form {
   margin: 50px auto;
-  background-color: vars.$color_1;
+  background-color: vars.$color_5;
+  color: vars.$color_9;
   padding: 20px 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(150, 150, 150, 0.3);
@@ -89,7 +103,8 @@ select {
   box-sizing: border-box;
   transition: border-color 0.2s;
   margin-bottom: 20px;
-  color: #595959;
+  color: #323232;
+  background-color: vars.$color_2;
 }
 
 input:focus,
