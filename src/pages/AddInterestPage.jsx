@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
+import { searchMovies } from '../services/endpoints/movieAPI';
+import { searchMusic } from '../services/endpoints/musicAPI';
+import { searchBooks } from '../services/endpoints/bookAPI';
+import { searchEvents } from '../services/endpoints/eventAPI';
 
 const AddInterestPage = () => {
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     mediaType: "movie",
     searchParams: {},
   });
 
   const handleChange = (event) => {
-    const [name, value] = event.target;
+    const {name, value} = event.target;
 
     setFormData((prev) => ({
       ...prev,
@@ -18,9 +24,39 @@ const AddInterestPage = () => {
     }));
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-  };
+    setLoading(true);
+
+    try {
+        let results;
+        switch(formData.mediaType) {
+            case 'movie':
+                results = await searchMovies(formData.searchParams);
+                console.log('Movie results:', results);
+                break;
+
+            case 'music':
+                results = await searchMusic(formData.searchParams);
+                console.log('Music results:', results);
+                break;
+
+            case 'book':
+                results = await searchBooks(formData.searchParams);
+                console.log('Book results:', results);
+                break;
+
+            case 'event':
+                results = await searchEvents(formData.searchParams);
+                console.log('Event results:', results);
+                break;
+        }
+    } catch (error) {
+        console.error(error.message);
+    } finally {
+        setLoading(false);
+    }
+};
 
   return (
     <div className="form-container">
@@ -114,7 +150,7 @@ const AddInterestPage = () => {
         )}
 
         {/* Book Fields */}
-        {formData.mediaType === "Book" && (
+        {formData.mediaType === "book" && (
           <>
             <div className="form-group">
               <label>Book Title</label>
