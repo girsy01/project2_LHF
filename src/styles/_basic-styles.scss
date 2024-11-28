@@ -103,7 +103,8 @@ select {
   box-sizing: border-box;
   transition: border-color 0.2s;
   margin-bottom: 20px;
-  color: #595959;
+  color: #323232;
+  background-color: vars.$color_2;
 }
 
 input:focus,
