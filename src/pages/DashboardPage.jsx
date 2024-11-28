@@ -1,7 +1,8 @@
 const DashboardPage = () => {
   return (
-    <div>
-      <h1>User Dashboard</h1>
+    <div className="wrapper">
+      <h1>Exhibitly</h1>
+      <h2>Your unique gallery of favorites.</h2>
       <ul>
         <li>Movies</li>
         <li>Books</li>
