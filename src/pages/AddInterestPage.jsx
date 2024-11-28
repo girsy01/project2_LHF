@@ -60,7 +60,13 @@ const AddInterestPage = () => {
             </div>
             <div className="form-group">
               <label>Year</label>
-              <input type="number" name="year" placeholder="Enter year" onChange={handleChange} />
+              <input 
+                type="number" 
+                name="year" 
+                placeholder="Enter year" 
+                onChange={handleChange}
+                required
+                />
             </div>
             <div className="form-group">
               <label>Director</label>
