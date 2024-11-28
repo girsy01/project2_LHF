@@ -45,28 +45,28 @@ const UIKitPage = () => {
       <hr />
 
       <h2>Form:</h2>
-      <form>
-        <h2>Edit item</h2>
-        <label>Title:</label>
-        <input type="text" />
+      <div>
+        <form>
+          <h2>Edit item</h2>
+          <label>Title:</label>
+          <input type="text" />
 
-        <label>Rating:</label>
-        <input type="number" />
+          <label>Rating:</label>
+          <input type="number" />
 
-        <label for="gender">Category:</label>
-        <select id="gender" name="gender">
-          <option value="" disabled selected>
-            Select category
-          </option>
-          <option value="movie">Movie</option>
-          <option value="book">Book</option>
-          <option value="music">Music</option>
-        </select>
+          <label for="gender">Category:</label>
+          <select id="gender" name="gender">
+            <option value="" disabled selected>
+              Select category
+            </option>
+            <option value="movie">Movie</option>
+            <option value="book">Book</option>
+            <option value="music">Music</option>
+          </select>
 
-        <div className="flex-center">
           <button className="btn-dark">Save changes</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
