@@ -12,7 +12,7 @@ nav {
     align-items: center;
   }
 
-  img {
+  a img {
     height: 100%;
     padding: 5px;
   }
@@ -40,5 +40,89 @@ nav {
   img {
     height: 100%;
     padding: 0;
+  }
+}
+
+//Card
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card {
+  width: min-content;
+  margin: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: vars.$color_2;
+  position: relative;
+
+  img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .card-infos {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .details {
+    width: 80%;
+  }
+
+  .pos-absolute-right {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  .pos-absolute-left {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+
+  .like {
+    background-color: rgba(vars.$color_1, 0.8);
+    border-radius: 50px;
+    margin: 5px;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .total-likes {
+    display: flex;
+    align-items: center;
+  }
+
+  .category-icon {
+    background-color: rgba(vars.$color_1, 0.8);
+    border-radius: 50px;
+    height: 50px;
+    width: 50px;
+  }
+
+  .category-icon img {
+    height: 100%;
+    width: 100%;
+    padding: 8px;
   }
 }
