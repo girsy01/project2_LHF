@@ -14,7 +14,7 @@ const Navbar = () => {
           <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "selected" : "")}>
             Dashboard
           </NavLink>
-          <NavLink to="#" className={({ isActive }) => (isActive ? "selected" : "")}>
+          <NavLink to="/addInterest" className={({ isActive }) => (isActive ? "selected" : "")}>
             Add Item
           </NavLink>
           <NavLink to="#" className={({ isActive }) => (isActive ? "selected" : "")}>
