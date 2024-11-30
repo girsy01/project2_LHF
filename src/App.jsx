@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage";
 import UIKitPage from "./pages/UIKitPage";
 import Navbar from "./components/Navbar";
 import AddInterestPage from "./pages/AddInterestPage"
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 function App() {
   const registered = false;
@@ -16,8 +17,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<SplashPage />} />
-        <Route path="/addInterest" element={<AddInterestPage />}/>
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/search" element={<AddInterestPage />} />
+        <Route path="/results" element={<SearchResultsPage />} />
+        {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
         <Route path="/dashboard/:userId" element={<DashboardPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/uikit" element={<UIKitPage />} />
