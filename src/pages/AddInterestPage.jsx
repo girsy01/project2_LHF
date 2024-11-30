@@ -5,10 +5,6 @@ import { searchMusic } from "../services/endpoints/musicAPI";
 import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
-import { searchMovies } from "../services/endpoints/movieAPI";
-import { searchMusic } from "../services/endpoints/musicAPI";
-import { searchBooks } from "../services/endpoints/bookAPI";
-import { searchEvents } from "../services/endpoints/eventAPI";
 
 const AddInterestPage = () => {
   const navigate = useNavigate();
@@ -46,27 +42,10 @@ const AddInterestPage = () => {
           setSearchResults(results);
           console.log("Movie results:", results);
           break;
-          let results;
-          switch (formData.mediaType) {
-            case "movie":
-              results = await searchMovies(formData.searchParams);
-              console.log("Movie results:", results);
-              break;
-
             case "music":
               results = await searchMusic(formData.searchParams);
               setSearchResults(results);
               console.log("Music results:", results);
-              break;
-            case "music":
-              results = await searchMusic(formData.searchParams);
-              console.log("Music results:", results);
-              break;
-
-            case "book":
-              results = await searchBooks(formData.searchParams);
-              setSearchResults(results);
-              console.log("Book results:", results);
               break;
             case "book":
               results = await searchBooks(formData.searchParams);
@@ -84,7 +63,6 @@ const AddInterestPage = () => {
 
     } catch (error) {
       setError(error.message);
-      console.error(error.message);
       console.error(error.message);
     } finally {
       setLoading(false);
@@ -319,6 +297,5 @@ const AddInterestPage = () => {
   )}
   </div>
   );
-};
 
 export default AddInterestPage;
