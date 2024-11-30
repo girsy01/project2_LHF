@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { searchMovies } from '../services/endpoints/movieAPI';
-import { searchMusic } from '../services/endpoints/musicAPI';
-import { searchBooks } from '../services/endpoints/bookAPI';
-import { searchEvents } from '../services/endpoints/eventAPI';
-import { useMedia } from '../contexts/MediaContext';
+import { useNavigate } from "react-router-dom";
+import { searchMovies } from "../services/endpoints/movieAPI";
+import { searchMusic } from "../services/endpoints/musicAPI";
+import { searchBooks } from "../services/endpoints/bookAPI";
+import { searchEvents } from "../services/endpoints/eventAPI";
+import { useMedia } from "../contexts/MediaContext";
 
 const AddInterestPage = () => {
-
   const navigate = useNavigate();
 
   const [selectedItem, setSelectedItem] = useState(null);
@@ -17,17 +16,10 @@ const AddInterestPage = () => {
     searchParams: {},
   });
 
-  const { 
-    searchResults, 
-    setSearchResults, 
-    loading, 
-    setLoading, 
-    error, 
-    setError 
-  } = useMedia();
+  const { searchResults, setSearchResults, loading, setLoading, error, setError } = useMedia();
 
   const handleChange = (event) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
 
     setFormData((prev) => ({
       ...prev,
@@ -37,31 +29,28 @@ const AddInterestPage = () => {
       },
     }));
   };
-
+}
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
     try {
-        let results;
-        switch(formData.mediaType) {
-            case 'movie':
-                results = await searchMovies(formData.searchParams);
-                setSearchResults(results);
-                console.log('Movie results:', results);
-                break;
-
-            case 'music':
-                results = await searchMusic(formData.searchParams);
-                setSearchResults(results);
-                console.log('Music results:', results);
-                break;
-
-            case 'book':
-                results = await searchBooks(formData.searchParams);
-                setSearchResults(results);
-                console.log('Book results:', results);
-                break;
+      let results;
+      switch (formData.mediaType) {
+        case "movie":
+          results = await searchMovies(formData.searchParams);
+          setSearchResults(results);
+          console.log("Movie results:", results);
+          break;
+            case "music":
+              results = await searchMusic(formData.searchParams);
+              setSearchResults(results);
+              console.log("Music results:", results);
+              break;
+            case "book":
+              results = await searchBooks(formData.searchParams);
+              console.log("Book results:", results);
+              break;
 
             case 'event':
                 results = await searchEvents(formData.searchParams);
@@ -69,18 +58,20 @@ const AddInterestPage = () => {
                 console.log('Event results:', results);
                 break;
         }
+        
+        navigate('/results');
 
     } catch (error) {
-        setError(error.message);
-        console.error(error.message);
+      setError(error.message);
+      console.error(error.message);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   return (
     <div className="form-container">
-      <h2>Add a new interest</h2>
+      <h1>Add a new interest</h1>
 
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
@@ -108,7 +99,7 @@ const AddInterestPage = () => {
               <label>Movie Title</label>
               <input
                 type="text"
-                name="query"  // Changed from "title" as TMDB API uses query
+                name="query" // Changed from "title" as TMDB API uses query
                 placeholder="Enter movie title"
                 onChange={handleChange}
                 required
@@ -116,20 +107,16 @@ const AddInterestPage = () => {
             </div>
             <div className="form-group">
               <label>Year</label>
-              <input 
-                type="number" 
+              <input
+                type="number"
                 name="year"
-                placeholder="Enter release year" 
+                placeholder="Enter release year"
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
               <label>Language</label>
-              <select
-                name="language"
-                onChange={handleChange}
-                defaultValue="en-US"
-              >
+              <select name="language" onChange={handleChange} defaultValue="en-US">
                 <option value="en-US">English</option>
                 <option value="es-ES">Spanish</option>
                 <option value="fr-FR">French</option>
@@ -229,11 +216,7 @@ const AddInterestPage = () => {
             </div>
             <div className="form-group">
               <label>Category</label>
-              <select
-                name="category"
-                onChange={handleChange}
-                defaultValue=""
-              >
+              <select name="category" onChange={handleChange} defaultValue="">
                 <option value="">All Categories</option>
                 <option value="music">Music</option>
                 <option value="sports">Sports</option>
@@ -314,6 +297,5 @@ const AddInterestPage = () => {
   )}
   </div>
   );
-};
 
 export default AddInterestPage;

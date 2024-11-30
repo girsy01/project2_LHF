@@ -1,0 +1,36 @@
+@use "./variables" as vars;
+
+//Dashboard Page
+.dashboardPage {
+  h2 {
+    margin-top: 0;
+    // margin-bottom: 60px;
+  }
+
+  .icons-container {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    margin: 30px;
+    text-align: center;
+
+    .category-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 100%;
+      padding: 15px;
+      margin: 10px 20px;
+      border: 1px solid vars.$color_2;
+      border-radius: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    img {
+      height: 100%;
+    }
+  }
+}

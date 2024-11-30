@@ -1,7 +1,9 @@
 import ItemCard from "../components/ItemCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import IconFilterItem from "../components/IconFilterItem";
+import { FilterContext } from "../context/FilterContext";
 
 const DashboardPage = () => {
   const { userId } = useParams();
@@ -10,16 +12,34 @@ const DashboardPage = () => {
   useEffect(() => {
     axios.get("http://localhost:5005/user").then((response) => {
       const data = response.data;
+      // JUST FOR NOW UNTIL WE HAVE THE REAL DATA
+      const [myItems, setMyItems] = useState([]);
+      useEffect(() => {
+        setMyItems([
+          { category: "movie" },
+          { category: "book" },
+          { category: "music" },
+          { category: "event" },
+        ]);
+      }, []);
 
-      const user = data.find(
-        (oneUser) => String(oneUser.id) === String(userId)
-      );
+      const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
+
+      useEffect(() => {
+        axios.get("http://localhost:5005/user").then((response) => {
+          const data = response.data;
+
+          const user = data.find((oneUser) => String(oneUser.id) === String(userId));
+
+          setCurrentUser(user);
+        });
+      }, [userId]);
+
+      const user = data.find((oneUser) => oneUser.id === userId);
 
       setCurrentUser(user);
     });
-  }, [userId]);
-
-  
+  }, [currentUser]);
 
   return (
     <div className="dashboardPage">
@@ -66,6 +86,21 @@ const DashboardPage = () => {
             ))}
           </div>
         )}
+        <div className="icons-container">
+          <IconFilterItem category={"movie"} />
+          <IconFilterItem category={"book"} />
+          <IconFilterItem category={"music"} />
+          <IconFilterItem category={"event"} />
+          <IconFilterItem category={"all"} />
+        </div>
+
+        <div className="card-container">
+          {myItems
+            .filter((item) => categoryFilter === "all" || item.category === categoryFilter)
+            .map((item) => (
+              <ItemCard category={item.category} />
+            ))}
+        </div>
       </div>
     </div>
   );
