@@ -3,11 +3,13 @@ import heartSVGnoFill from "../assets/heart-svg-noFill.svg";
 import movieSVG from "../assets/movie-svg.svg";
 import bookSVG from "../assets/book-svg.svg";
 import musicSVG from "../assets/music-svg.svg";
+import eventSVG from "../assets/events-svg.svg";
 
 const ItemCard = ({ category }) => {
   let catIcon = "";
   if (category === "book") catIcon = bookSVG;
   else if (category === "movie") catIcon = movieSVG;
+  else if (category === "event") catIcon = eventSVG;
   else catIcon = musicSVG;
 
   let imgSrc = "";
@@ -17,11 +19,15 @@ const ItemCard = ({ category }) => {
   else if (category === "movie")
     imgSrc =
       "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-  else
+  else if (category === "event")
     imgSrc =
       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bXVzaWN8ZW58MHx8MHx8fDA%3D";
+  else {
+    imgSrc =
+      "https://images.unsplash.com/photo-1458560871784-56d23406c091?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG11c2ljfGVufDB8fDB8fHww";
+  }
 
-  return (
+  https: return (
     <div className="card">
       <img src={imgSrc} alt="" />
       <div className="like pos-absolute-right ">
