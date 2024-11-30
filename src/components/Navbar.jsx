@@ -30,7 +30,7 @@ const Navbar = () => {
           >
             Dashboard
           </NavLink>
-          <NavLink to="/addInterest" className={({ isActive }) => getNavLinkClass(isActive, true)}>
+          <NavLink to="/search" className={({ isActive }) => getNavLinkClass(isActive, true)}>
             Add Item
           </NavLink>
           <NavLink to="/about" className={({ isActive }) => getNavLinkClass(isActive, false)}>
