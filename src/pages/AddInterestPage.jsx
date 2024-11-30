@@ -33,7 +33,7 @@ const AddInterestPage = () => {
       },
     }));
   };
-
+}
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
