@@ -6,6 +6,7 @@ import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
 
+
 const AddInterestPage = () => {
   const navigate = useNavigate();
 
@@ -61,7 +62,6 @@ const AddInterestPage = () => {
           break;
       }
 
-      navigate('/results');
     } catch (error) {
       setError(error.message);
       console.error(error.message);
