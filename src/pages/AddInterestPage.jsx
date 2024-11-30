@@ -61,7 +61,6 @@ const AddInterestPage = () => {
           break;
       }
 
-      navigate('/results');
     } catch (error) {
       setError(error.message);
       console.error(error.message);
