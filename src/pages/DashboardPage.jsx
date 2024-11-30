@@ -48,6 +48,14 @@ const DashboardPage = () => {
         <h1>Exhibitly</h1>
         <h2>Your unique gallery of favorites.</h2>
 
+        <div className="icons-container">
+          <IconFilterItem category={"movie"} />
+          <IconFilterItem category={"book"} />
+          <IconFilterItem category={"music"} />
+          <IconFilterItem category={"event"} />
+          <IconFilterItem category={"all"} />
+        </div>
+
         {/* Movies */}
         {currentUser.movies && (
           <div className="card-container">
@@ -87,13 +95,6 @@ const DashboardPage = () => {
             ))}
           </div>
         )}
-        <div className="icons-container">
-          <IconFilterItem category={"movie"} />
-          <IconFilterItem category={"book"} />
-          <IconFilterItem category={"music"} />
-          <IconFilterItem category={"event"} />
-          <IconFilterItem category={"all"} />
-        </div>
 
         {/* <div className="card-container">
           {myItems
