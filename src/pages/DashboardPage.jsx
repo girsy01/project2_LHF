@@ -9,21 +9,22 @@ const DashboardPage = () => {
   const { userId } = useParams();
   const [currentUser, setCurrentUser] = useState({});
 
+  // JUST FOR NOW UNTIL WE HAVE THE REAL DATA
+  const [myItems, setMyItems] = useState([]);
+  useEffect(() => {
+    setMyItems([
+      { category: "movie" },
+      { category: "book" },
+      { category: "music" },
+      { category: "event" },
+    ]);
+  }, []);
+
+  const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
+
   useEffect(() => {
     axios.get("http://localhost:5005/user").then((response) => {
       const data = response.data;
-      // JUST FOR NOW UNTIL WE HAVE THE REAL DATA
-      const [myItems, setMyItems] = useState([]);
-      useEffect(() => {
-        setMyItems([
-          { category: "movie" },
-          { category: "book" },
-          { category: "music" },
-          { category: "event" },
-        ]);
-      }, []);
-
-      const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
 
       useEffect(() => {
         axios.get("http://localhost:5005/user").then((response) => {
@@ -94,13 +95,13 @@ const DashboardPage = () => {
           <IconFilterItem category={"all"} />
         </div>
 
-        <div className="card-container">
+        {/* <div className="card-container">
           {myItems
             .filter((item) => categoryFilter === "all" || item.category === categoryFilter)
             .map((item) => (
               <ItemCard category={item.category} />
             ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
