@@ -16,7 +16,7 @@ export const spotifyAxios = axios.create({
     }
 });
 
-// Add Spotify auth - since it needs both client ID and secret
+// For spotify auth
 let spotifyToken = null;
 const getSpotifyToken = async () => {
     try {

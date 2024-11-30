@@ -1,13 +1,16 @@
 import { tmdbAxios } from './axiosConfig';
 
 export const searchMovies = async (searchParams) => {
-    const response = await tmdbAxios.get('/search/movie', {
-        params: {
-            query: searchParams.query,
-            include_adult: searchParams.include_adult || "true",
-            language: searchParams.language || 'en-US',
-            year: searchParams.year
-        }
-    });
-    return response.data.results;
+    try {
+        const response = await tmdbAxios.get('/search/movie', {
+            params: {
+                query: searchParams.query,
+                language: 'en-US',
+                page: 1
+            }
+        });
+        return response.data.results;
+    } catch (error) {
+        throw new Error('Unable to find the requested movie: ' + error.message);
+    }
 };
