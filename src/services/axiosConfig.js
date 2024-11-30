@@ -4,7 +4,7 @@ import axios from 'axios';
 export const tmdbAxios = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
     headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_TMDB_READ_KEY}`
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_READ_KEY}`
     }
 });
 
@@ -26,8 +26,8 @@ const getSpotifyToken = async () => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Authorization': 'Basic ' + btoa(
-                        process.env.REACT_APP_SPOTIFY_CLIENT_ID + ':' + 
-                        process.env.REACT_APP_SPOTIFY_SECRET_KEY
+                        import.meta.env.VITE_SPOTIFY_CLIENT_ID + ':' + 
+                        import.meta.env.VITE_SPOTIFY_SECRET_KEY
                     )
                 }
             }
@@ -54,7 +54,7 @@ spotifyAxios.interceptors.request.use(
 export const booksAxios = axios.create({
     baseURL: 'https://www.googleapis.com/books/v1',
     params: {
-        key: process.env.REACT_APP_BOOKS_KEY
+        key: import.meta.env.VITE_BOOKS_KEY
     }
 });
 
@@ -62,6 +62,6 @@ export const booksAxios = axios.create({
 export const eventsAxios = axios.create({
     baseURL: 'https://app.ticketmaster.com/discovery/v2',
     params: {
-        apikey: process.env.REACT_APP_TICKETMASTER_KEY
+        apikey: import.meta.env.VITE_TICKETMASTER_KEY
     }
 });
