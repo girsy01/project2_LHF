@@ -10,6 +10,8 @@ const AddInterestPage = () => {
 
   const navigate = useNavigate();
 
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const [formData, setFormData] = useState({
     mediaType: "movie",
     searchParams: {},
@@ -67,8 +69,6 @@ const AddInterestPage = () => {
                 console.log('Event results:', results);
                 break;
         }
-        
-        navigate('/results');
 
     } catch (error) {
         setError(error.message);
@@ -248,8 +248,76 @@ const AddInterestPage = () => {
           <button type="submit">Search</button>
         </div>
       </form>
+
+ {/* Results Section */}
+{loading && <div>Loading...</div>}
+{error && <div>Error: {error}</div>}
+
+{/* Results Section */}
+{loading && <div>Loading...</div>}
+{error && <div>Error: {error}</div>}
+
+{searchResults?.length > 0 && (
+    <div className="results-section">
+        <h3>Select an Option:</h3>
+        <div className="results-scroll-container">
+            <form>
+                {searchResults.map((item) => (
+                    <div key={item.id} className="result-item">
+                        <label>
+                            <input
+                                type="radio"
+                                name="mediaSelection"
+                                value={item.id}
+                                checked={selectedItem?.id === item.id}
+                                onChange={() => setSelectedItem(item)}
+                            />
+                            {/* Movies */}
+                            {item.title && (
+                                <span>
+                                    {item.title} ({item.release_date?.split('-')[0]})
+                                </span>
+                            )}
+                            {/* Music */}
+                            {item.name && (
+                                <span>
+                                    {item.name} - {item.artists?.[0]?.name}
+                                </span>
+                            )}
+                            {/* Books */}
+                            {item.volumeInfo && (
+                                <span>
+                                    {item.volumeInfo.title} - {item.volumeInfo.authors?.[0]}
+                                </span>
+                            )}
+                            {/* Events */}
+                            {item.dates && (
+                                <span>
+                                    {item.name} - {item.dates.start.localDate}
+                                </span>
+                            )}
+                        </label>
+                    </div>
+                ))}
+            </form>
+        </div>
+        <button 
+            onClick={() => {
+                if (selectedItem) {
+                    console.log('Saving:', selectedItem);
+                    // to a database?
+                } else {
+                    alert('Please select an item first');
+                }
+            }}
+            disabled={!selectedItem}
+        >
+            Save Selection
+        </button>
     </div>
-  );
+  )}
+  </div>
+);
 };
 
 export default AddInterestPage;
