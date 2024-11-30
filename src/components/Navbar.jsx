@@ -1,8 +1,9 @@
 import logo from "../assets/logo.png";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import userImage from "../assets/user.png"; // Import the user image
 
 const Navbar = () => {
+  const {userId} = useParams()
   const location = useLocation();
   const isSplashPage = location.pathname === "/";
 
@@ -18,19 +19,19 @@ const Navbar = () => {
     <nav>
       <div className="wrapper">
         {/* Dynamically set the link based on whether the user is on the splash page */}
-        <Link to={isSplashPage ? "/" : "/dashboard/userId"}>
+        <Link to={isSplashPage ? "/" : `/dashboard/${userId}`}>
           <img src={logo} alt="Logo" />
         </Link>
 
         <div className="menu">
           {/* TODO: add real userId here */}
           <NavLink
-            to="/dashboard/userId"
+            to={`/dashboard/${userId}`}
             className={({ isActive }) => getNavLinkClass(isActive, true)}
           >
             Dashboard
           </NavLink>
-          <NavLink to="/search" className={({ isActive }) => getNavLinkClass(isActive, true)}>
+          <NavLink to={`/search/${userId}`} className={({ isActive }) => getNavLinkClass(isActive, true)}>
             Add Item
           </NavLink>
           <NavLink to="/about" className={({ isActive }) => getNavLinkClass(isActive, false)}>
@@ -48,3 +49,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

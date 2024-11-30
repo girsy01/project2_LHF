@@ -10,14 +10,14 @@ import AddInterestPage from "./pages/AddInterestPage"
 import SearchResultsPage from "./pages/SearchResultsPage";
 
 function App() {
-  const registered = false;
+  
 
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<SplashPage />} />
-        <Route path="/search" element={<AddInterestPage />} />
+        <Route path="/search/:userId" element={<AddInterestPage />} />
         <Route path="/results" element={<SearchResultsPage />} />
         {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
         <Route path="/dashboard/:userId" element={<DashboardPage />} />
@@ -30,3 +30,5 @@ function App() {
 }
 
 export default App;
+
+
