@@ -8,7 +8,6 @@ import UIKitPage from "./pages/UIKitPage";
 import Navbar from "./components/Navbar";
 import AddInterestPage from "./pages/AddInterestPage";
 import AboutPage from "./pages/AboutPage";
-sear;
 
 function App() {
   return (
