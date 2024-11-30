@@ -1,4 +1,4 @@
-import { eventsAxios } from './axiosConfig';
+import { eventsAxios } from '../axiosConfig';
 
 export const searchEvents = async (searchParams) => {
     try {
