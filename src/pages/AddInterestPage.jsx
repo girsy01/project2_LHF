@@ -1,16 +1,28 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../services/endpoints/movieAPI';
 import { searchMusic } from '../services/endpoints/musicAPI';
 import { searchBooks } from '../services/endpoints/bookAPI';
 import { searchEvents } from '../services/endpoints/eventAPI';
+import { useMedia } from '../context/MediaContext';
 
 const AddInterestPage = () => {
-  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     mediaType: "movie",
     searchParams: {},
   });
+
+  const { 
+    searchResults, 
+    setSearchResults, 
+    loading, 
+    setLoading, 
+    error, 
+    setError 
+  } = useMedia();
 
   const handleChange = (event) => {
     const {name, value} = event.target;
@@ -33,25 +45,33 @@ const AddInterestPage = () => {
         switch(formData.mediaType) {
             case 'movie':
                 results = await searchMovies(formData.searchParams);
+                setSearchResults(results);
                 console.log('Movie results:', results);
                 break;
 
             case 'music':
                 results = await searchMusic(formData.searchParams);
+                setSearchResults(results);
                 console.log('Music results:', results);
                 break;
 
             case 'book':
                 results = await searchBooks(formData.searchParams);
+                setSearchResults(results);
                 console.log('Book results:', results);
                 break;
 
             case 'event':
                 results = await searchEvents(formData.searchParams);
+                setSearchResults(results);
                 console.log('Event results:', results);
                 break;
         }
+        
+        navigate('/results');
+
     } catch (error) {
+        setError(error.message);
         console.error(error.message);
     } finally {
         setLoading(false);
