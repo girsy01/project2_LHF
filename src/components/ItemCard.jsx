@@ -16,18 +16,25 @@ const ItemCard = ({ category, item }) => {
   else if (category === "event") catIcon = eventSVG;
   else catIcon = musicSVG;
 
-  let imgSrc = "";
-  if (category === "book")
-    imgSrc =
-      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-  else if (category === "movie")
-    imgSrc =
-      "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-  else
-    imgSrc =
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bXVzaWN8ZW58MHx8MHx8fDA%3D";
+  let imgSrc = "../assets/logo.png";
+  if (item) {
+    if (category === "book") imgSrc = item.book_cover;
+    else if (category === "movie") imgSrc = item.cover;
+    else if (category === "music") imgSrc = item.album_cover;
+    else if (category === "event") imgSrc = item.event_cover;
+  }
 
-  https: return (
+  let titles = "Untitled";
+  if (item) {
+    if (category === "book") titles = item.book_title;
+    else if (category === "movie") titles = item.title;
+    else if (category === "music") titles = item.band_name;
+    else if (category === "event") titles = item.event_name;
+  };
+
+  
+
+  return (
     <div className="card">
       <img src={imgSrc} alt="" />
       <div className="like pos-absolute-right ">
