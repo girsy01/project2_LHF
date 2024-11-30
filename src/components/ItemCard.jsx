@@ -28,7 +28,7 @@ const ItemCard = ({ category, item }) => {
     else if (category === "movie") titles = item.title;
     else if (category === "music") titles = item.band_name;
     else if (category === "event") titles = item.event_name;
-  }
+  };
 
   
 
