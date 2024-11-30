@@ -258,10 +258,6 @@ const AddInterestPage = () => {
 {loading && <div>Loading...</div>}
 {error && <div>Error: {error}</div>}
 
-{/* Results Section */}
-{loading && <div>Loading...</div>}
-{error && <div>Error: {error}</div>}
-
 {searchResults?.length > 0 && (
     <div className="results-section">
         <h3>Select an Option:</h3>
@@ -322,7 +318,7 @@ const AddInterestPage = () => {
     </div>
   )}
   </div>
-);
+  );
 };
 
 export default AddInterestPage;
