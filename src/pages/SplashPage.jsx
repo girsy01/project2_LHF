@@ -16,9 +16,7 @@ const SplashPage = () => {
         const users = response.data;
         const foundUser = users.find((user) => user.user_name === username);
         const userPassword = foundUser.password;
-
-        console.log(userPassword);
-        console.log(foundUser);
+        
 
         if (foundUser && userPassword === password) {
           navigate(`/dashboard/${foundUser.id}`);
