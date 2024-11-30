@@ -4,7 +4,7 @@ import axios from "axios";
 // import logo from "../assets/logo.png";
 const SplashPage = () => {
   let registered;
-  const [username, setUsername] = useState([]);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
@@ -16,10 +16,18 @@ const SplashPage = () => {
       .then((response) => {
         const users = response.data;
         const foundUser = users.find((user) => user.user_name === username);
+        const userPassword = foundUser.password
+        
+        console.log(userPassword)
+        console.log(foundUser)
 
-        if (foundUser) {
+        if (foundUser && userPassword === password) {
           navigate(`/dashboard/${foundUser.id}`);
-        } else {
+        } else if (!foundUser || userPassword !== password){
+          alert("Incorrect Credentials")
+          setUsername("");
+          setPassword("");
+        }else{
           navigate("/register");
         }
       })
@@ -30,18 +38,7 @@ const SplashPage = () => {
 
   return (
     <div>
-      {/* <img src={logo} alt="" /> */}
-      <form>
-        <label>Username:</label>
-        <input type="text" />
-
-        <label>Password:</label>
-        <input type="password" />
-
-        <Link to={`${registered ? "/dashboard" : "/register"}`}>
-          <button className="btn-dark">Login</button>
-        </Link>
-      </form>
+      {/* <img src={logo} alt="" /> */}    
       <form onSubmit={handleSubmit}>
         <label>
           Username:{" "}
@@ -62,7 +59,7 @@ const SplashPage = () => {
           />
         </label>
 
-        <button>Login</button>
+        <button className="btn-dark">Login</button>
       </form>
     </div>
   );
