@@ -22,6 +22,7 @@ const SplashPage = () => {
 
         if (foundUser && userPassword === password) {
           navigate(`/dashboard/${foundUser.id}`);
+          
         } else if (!foundUser || userPassword !== password){
           alert("Incorrect Credentials")
           setUsername("");
