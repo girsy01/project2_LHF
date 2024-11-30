@@ -1,4 +1,4 @@
-import { tmdbAxios } from './axiosConfig';
+import { tmdbAxios } from '../axiosConfig';
 
 export const searchMovies = async (searchParams) => {
     try {

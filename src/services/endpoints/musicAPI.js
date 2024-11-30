@@ -1,4 +1,4 @@
-import { spotifyAxios } from './axiosConfig';
+import { spotifyAxios } from '../axiosConfig';
 
 export const searchMusic = async (searchParams) => {
     try {
