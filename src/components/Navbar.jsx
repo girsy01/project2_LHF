@@ -1,28 +1,44 @@
 import logo from "../assets/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import userImage from "../assets/user.png"; // Import the user image
 
 const Navbar = () => {
-  https: return (
+  const location = useLocation();
+  const isSplashPage = location.pathname === "/";
+
+  const getNavLinkClass = (isActive, shouldApplySplash) => {
+    let classes = isActive ? "selected" : "";
+    if (isSplashPage && shouldApplySplash) {
+      classes += " splash";
+    }
+    return classes.trim();
+  };
+
+  return (
     <nav>
       <div className="wrapper">
-        <Link to="/">
-          <img src={logo} alt="" />
+        {/* Dynamically set the link based on whether the user is on the splash page */}
+        <Link to={isSplashPage ? "/" : "/dashboard/userId"}>
+          <img src={logo} alt="Logo" />
         </Link>
 
         <div className="menu">
-          <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "selected" : "")}>
+          {/* TODO: add real userId here */}
+          <NavLink
+            to="/dashboard/userId"
+            className={({ isActive }) => getNavLinkClass(isActive, true)}
+          >
             Dashboard
           </NavLink>
-          <NavLink to="/addInterest" className={({ isActive }) => (isActive ? "selected" : "")}>
+          <NavLink to="/addInterest" className={({ isActive }) => getNavLinkClass(isActive, true)}>
             Add Item
           </NavLink>
-          <NavLink to="#" className={({ isActive }) => (isActive ? "selected" : "")}>
+          <NavLink to="/about" className={({ isActive }) => getNavLinkClass(isActive, false)}>
             About
           </NavLink>
-          <Link>
+          <Link to="#">
             <div className="img-profile">
-              <img src={userImage} />
+              <img src={userImage} alt="User Profile" />
             </div>
           </Link>
         </div>
@@ -30,4 +46,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;

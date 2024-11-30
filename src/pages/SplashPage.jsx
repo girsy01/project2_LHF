@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import logo from "../assets/logo.png";
-const SplashPage = () => {  
+const SplashPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,19 +15,18 @@ const SplashPage = () => {
       .then((response) => {
         const users = response.data;
         const foundUser = users.find((user) => user.user_name === username);
-        const userPassword = foundUser.password
-        
-        console.log(userPassword)
-        console.log(foundUser)
+        const userPassword = foundUser.password;
+
+        console.log(userPassword);
+        console.log(foundUser);
 
         if (foundUser && userPassword === password) {
           navigate(`/dashboard/${foundUser.id}`);
-          
-        } else if (!foundUser || userPassword !== password){
-          alert("Incorrect Credentials")
+        } else if (!foundUser || userPassword !== password) {
+          alert("Incorrect Credentials");
           setUsername("");
           setPassword("");
-        }else{
+        } else {
           navigate("/register");
         }
       })
@@ -38,7 +37,7 @@ const SplashPage = () => {
 
   return (
     <div>
-      {/* <img src={logo} alt="" /> */}    
+      {/* <img src={logo} alt="" /> */}
       <form onSubmit={handleSubmit}>
         <label>
           Username:{" "}
