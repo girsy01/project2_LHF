@@ -88,7 +88,7 @@ const AddInterestPage = () => {
               <label>Movie Title</label>
               <input
                 type="text"
-                name="title"
+                name="query"  // Changed from "title" as TMDB API uses query
                 placeholder="Enter movie title"
                 onChange={handleChange}
                 required
@@ -98,20 +98,22 @@ const AddInterestPage = () => {
               <label>Year</label>
               <input 
                 type="number" 
-                name="year" 
-                placeholder="Enter year" 
-                onChange={handleChange}
-                required
-                />
-            </div>
-            <div className="form-group">
-              <label>Director</label>
-              <input
-                type="text"
-                name="director"
-                placeholder="Enter director's name"
+                name="year"
+                placeholder="Enter release year" 
                 onChange={handleChange}
               />
+            </div>
+            <div className="form-group">
+              <label>Language</label>
+              <select
+                name="language"
+                onChange={handleChange}
+                defaultValue="en-US"
+              >
+                <option value="en-US">English</option>
+                <option value="es-ES">Spanish</option>
+                <option value="fr-FR">French</option>
+              </select>
             </div>
           </>
         )}
@@ -120,29 +122,30 @@ const AddInterestPage = () => {
         {formData.mediaType === "music" && (
           <>
             <div className="form-group">
-              <label>Song Title</label>
+              <label>Track Name</label>
               <input
                 type="text"
-                name="title"
+                name="track"
                 placeholder="Enter song title"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="form-group">
-              <label>PLACEHOLDER</label>
+              <label>Artist</label>
               <input
-                type="number"
-                name="PLACEHOLDER"
-                placeholder="Enter PLACEHOLDER"
+                type="text"
+                name="artist"
+                placeholder="Enter artist name"
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>PLACEHOLDER</label>
+              <label>Album</label>
               <input
                 type="text"
-                name="PLACEHOLDER"
-                placeholder="Enter PLACEHOLDER"
+                name="album"
+                placeholder="Enter album name"
                 onChange={handleChange}
               />
             </div>
@@ -162,20 +165,20 @@ const AddInterestPage = () => {
               />
             </div>
             <div className="form-group">
-              <label>PLACEHOLDER</label>
+              <label>Author</label>
               <input
-                type="number"
-                name="PLACEHOLDER"
-                placeholder="Enter PLACEHOLDER"
+                type="text"
+                name="author"
+                placeholder="Enter author name"
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>PLACEHOLDER</label>
+              <label>ISBN</label>
               <input
                 type="text"
-                name="PLACEHOLDER"
-                placeholder="Enter PLACEHOLDER"
+                name="isbn"
+                placeholder="Enter ISBN (optional)"
                 onChange={handleChange}
               />
             </div>
@@ -186,31 +189,37 @@ const AddInterestPage = () => {
         {formData.mediaType === "event" && (
           <>
             <div className="form-group">
-              <label>Event Title</label>
+              <label>Event Keyword</label>
               <input
                 type="text"
-                name="title"
-                placeholder="Enter Event title"
+                name="keyword"
+                placeholder="Enter event name or keyword"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>City</label>
+              <input
+                type="text"
+                name="city"
+                placeholder="Enter city name"
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>PLACEHOLDER</label>
-              <input
-                type="number"
-                name="PLACEHOLDER"
-                placeholder="Enter PLACEHOLDER"
+              <label>Category</label>
+              <select
+                name="category"
                 onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>PLACEHOLDER</label>
-              <input
-                type="text"
-                name="PLACEHOLDER"
-                placeholder="Enter PLACEHOLDER"
-                onChange={handleChange}
-              />
+                defaultValue=""
+              >
+                <option value="">All Categories</option>
+                <option value="music">Music</option>
+                <option value="sports">Sports</option>
+                <option value="arts">Arts & Theatre</option>
+                <option value="family">Family</option>
+              </select>
             </div>
           </>
         )}
