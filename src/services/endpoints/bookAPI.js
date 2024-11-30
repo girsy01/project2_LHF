@@ -1,4 +1,4 @@
-import { booksAxios } from './axiosConfig';
+import { booksAxios } from '../axiosConfig';
 
 export const searchBooks = async (searchParams) => {
     try {
