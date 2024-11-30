@@ -7,18 +7,15 @@ const DashboardPage = () => {
   const { userId } = useParams();
   const [currentUser, setCurrentUser] = useState({});
 
-useEffect(() => {
-  axios.get("http://localhost:5005/user").then((response) => {    
-    const data = response.data;
+  useEffect(() => {
+    axios.get("http://localhost:5005/user").then((response) => {
+      const data = response.data;
 
-    const user = data.find((oneUser) => oneUser.id === userId)
+      const user = data.find((oneUser) => oneUser.id === userId);
 
-    
-    setCurrentUser(user)
-  })
-}, [currentUser])
-
-
+      setCurrentUser(user);
+    });
+  }, [currentUser]);
 
   return (
     <div className="dashboardPage">
@@ -28,14 +25,8 @@ useEffect(() => {
 
         <div className="card-container">
           <ItemCard category={"movie"} />
-        </div>
-        <div className="card-container">
           <ItemCard category={"book"} />
-        </div>
-        <div className="card-container">
           <ItemCard category={"music"} />
-        </div>
-        <div className="card-container">
           <ItemCard category={"event"} />
         </div>
       </div>

@@ -37,8 +37,12 @@ hr {
 .wrapper {
   max-width: vars.$wrapper-width;
   margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
   padding-inline: 20px;
+  text-align: center;
 }
 
 button {
