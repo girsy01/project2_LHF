@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage";
 import UIKitPage from "./pages/UIKitPage";
 import Navbar from "./components/Navbar";
 import AddInterestPage from "./pages/AddInterestPage"
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 function App() {
   const registered = false;

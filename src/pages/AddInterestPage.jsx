@@ -4,7 +4,7 @@ import { searchMovies } from '../services/endpoints/movieAPI';
 import { searchMusic } from '../services/endpoints/musicAPI';
 import { searchBooks } from '../services/endpoints/bookAPI';
 import { searchEvents } from '../services/endpoints/eventAPI';
-import { useMedia } from '../context/MediaContext';
+import { useMedia } from '../contexts/MediaContext';
 
 const AddInterestPage = () => {
 
