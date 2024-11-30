@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import logo from "../assets/logo.png";
-const SplashPage = () => {
-  let registered;
+const SplashPage = () => {  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
