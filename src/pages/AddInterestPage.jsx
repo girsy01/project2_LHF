@@ -29,7 +29,7 @@ const AddInterestPage = () => {
       },
     }));
   };
-}
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -42,25 +42,26 @@ const AddInterestPage = () => {
           setSearchResults(results);
           console.log("Movie results:", results);
           break;
-            case "music":
-              results = await searchMusic(formData.searchParams);
-              setSearchResults(results);
-              console.log("Music results:", results);
-              break;
-            case "book":
-              results = await searchBooks(formData.searchParams);
-              console.log("Book results:", results);
-              break;
+        case "music":
+          results = await searchMusic(formData.searchParams);
+          setSearchResults(results);
+          console.log("Music results:", results);
+          break;
+        case "book":
+          results = await searchBooks(formData.searchParams);
+          setSearchResults(results);
+          console.log("Book results:", results);
+          break;
+        case 'event':
+          results = await searchEvents(formData.searchParams);
+          setSearchResults(results);
+          console.log('Event results:', results);
+          break;
+        default:
+          break;
+      }
 
-            case 'event':
-                results = await searchEvents(formData.searchParams);
-                setSearchResults(results);
-                console.log('Event results:', results);
-                break;
-        }
-        
-        navigate('/results');
-
+      navigate('/results');
     } catch (error) {
       setError(error.message);
       console.error(error.message);
@@ -92,14 +93,15 @@ const AddInterestPage = () => {
             <option value="event">Event</option>
           </select>
         </div>
-        {/* Movie Fields */}
+
+        {/* Media-specific fields */}
         {formData.mediaType === "movie" && (
           <>
             <div className="form-group">
               <label>Movie Title</label>
               <input
                 type="text"
-                name="query" // Changed from "title" as TMDB API uses query
+                name="query"
                 placeholder="Enter movie title"
                 onChange={handleChange}
                 required
@@ -125,7 +127,6 @@ const AddInterestPage = () => {
           </>
         )}
 
-        {/* Music Fields */}
         {formData.mediaType === "music" && (
           <>
             <div className="form-group">
@@ -159,7 +160,6 @@ const AddInterestPage = () => {
           </>
         )}
 
-        {/* Book Fields */}
         {formData.mediaType === "book" && (
           <>
             <div className="form-group">
@@ -192,7 +192,6 @@ const AddInterestPage = () => {
           </>
         )}
 
-        {/* Event Fields */}
         {formData.mediaType === "event" && (
           <>
             <div className="form-group">
@@ -232,70 +231,71 @@ const AddInterestPage = () => {
         </div>
       </form>
 
- {/* Results Section */}
-{loading && <div>Loading...</div>}
-{error && <div>Error: {error}</div>}
+      {/* Results Section */}
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
 
-{searchResults?.length > 0 && (
-    <div className="results-section">
-        <h3>Select an Option:</h3>
-        <div className="results-scroll-container">
+      {searchResults?.length > 0 && (
+        <div className="results-section">
+          <h3>Select an Option:</h3>
+          <div className="results-scroll-container">
             <form>
-                {searchResults.map((item) => (
-                    <div key={item.id} className="result-item">
-                        <label>
-                            <input
-                                type="radio"
-                                name="mediaSelection"
-                                value={item.id}
-                                checked={selectedItem?.id === item.id}
-                                onChange={() => setSelectedItem(item)}
-                            />
-                            {/* Movies */}
-                            {item.title && (
-                                <span>
-                                    {item.title} ({item.release_date?.split('-')[0]})
-                                </span>
-                            )}
-                            {/* Music */}
-                            {item.name && (
-                                <span>
-                                    {item.name} - {item.artists?.[0]?.name}
-                                </span>
-                            )}
-                            {/* Books */}
-                            {item.volumeInfo && (
-                                <span>
-                                    {item.volumeInfo.title} - {item.volumeInfo.authors?.[0]}
-                                </span>
-                            )}
-                            {/* Events */}
-                            {item.dates && (
-                                <span>
-                                    {item.name} - {item.dates.start.localDate}
-                                </span>
-                            )}
-                        </label>
-                    </div>
-                ))}
+              {searchResults.map((item) => (
+                <div key={item.id} className="result-item">
+                  <label>
+                    <input
+                      type="radio"
+                      name="mediaSelection"
+                      value={item.id}
+                      checked={selectedItem?.id === item.id}
+                      onChange={() => setSelectedItem(item)}
+                    />
+                    {/* Movies */}
+                    {item.title && (
+                      <span>
+                        {item.title} ({item.release_date?.split('-')[0]})
+                      </span>
+                    )}
+                    {/* Music */}
+                    {item.name && (
+                      <span>
+                        {item.name} - {item.artists?.[0]?.name}
+                      </span>
+                    )}
+                    {/* Books */}
+                    {item.volumeInfo && (
+                      <span>
+                        {item.volumeInfo.title} - {item.volumeInfo.authors?.[0]}
+                      </span>
+                    )}
+                    {/* Events */}
+                    {item.dates && (
+                      <span>
+                        {item.name} - {item.dates.start.localDate}
+                      </span>
+                    )}
+                  </label>
+                </div>
+              ))}
             </form>
-        </div>
-        <button 
+          </div>
+          <button
             onClick={() => {
-                if (selectedItem) {
-                    console.log('Saving:', selectedItem);
-                    // to a database?
-                } else {
-                    alert('Please select an item first');
-                }
+              if (selectedItem) {
+                console.log('Saving:', selectedItem);
+                // to a database?
+              } else {
+                alert('Please select an item first');
+              }
             }}
             disabled={!selectedItem}
-        >
+          >
             Save Selection
-        </button>
+          </button>
+        </div>
+      )}
     </div>
-  )}
-  </div>
   );
+};
 
 export default AddInterestPage;
