@@ -18,8 +18,6 @@ function App() {
       <Routes>
         <Route path="/" element={<SplashPage />} />
         <Route path="/addInterest" element={<AddInterestPage />} />
-        <Route path="/search" element={<AddInterestPage />} />
-        <Route path="/results" element={<SearchResultsPage />} />
         {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
         <Route path="/dashboard/:userId" element={<DashboardPage />} />
         <Route path="/register" element={<RegisterPage />} />
