@@ -8,17 +8,16 @@ import UIKitPage from "./pages/UIKitPage";
 import Navbar from "./components/Navbar";
 import AddInterestPage from "./pages/AddInterestPage";
 import AboutPage from "./pages/AboutPage";
+sear;
 
 function App() {
-  
-
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<SplashPage />} />
         <Route path="/search" element={<AddInterestPage />} />
-        <Route path="/results" element={<SearchResultsPage />} />
+        {/* <Route path="/results" element={<SearchResultsPage />} /> */}
         {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
         <Route path="/dashboard/:userId" element={<DashboardPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -31,5 +30,3 @@ function App() {
 }
 
 export default App;
-
-
