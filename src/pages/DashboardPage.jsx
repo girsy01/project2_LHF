@@ -6,8 +6,11 @@ import IconFilterItem from "../components/IconFilterItem";
 import { FilterContext } from "../contexts/FilterContext";
 
 const DashboardPage = () => {
+  // const { userId } = useContext(AuthContext);
   const { userId } = useParams();
   const [currentUser, setCurrentUser] = useState({});
+
+  const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
 
   // JUST FOR NOW UNTIL WE HAVE THE REAL DATA
   const [myItems, setMyItems] = useState([]);
@@ -19,8 +22,6 @@ const DashboardPage = () => {
       { category: "event" },
     ]);
   }, []);
-
-  const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
 
   useEffect(() => {
     axios.get("http://localhost:5005/user").then((response) => {

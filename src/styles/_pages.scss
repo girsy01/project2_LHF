@@ -60,3 +60,17 @@
     }
   }
 }
+
+//Profile Page
+.profilePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-top: 30px;
+    width: 15%;
+    min-width: 130px;
+  }
+}
