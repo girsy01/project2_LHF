@@ -32,6 +32,11 @@ const DashboardPage = () => {
     });
   }, [userId]);
 
+  function checkCategory(cat) {
+    if (categoryFilter === "all" || categoryFilter === cat) return true;
+    return false;
+  }
+
   return (
     <div className="dashboardPage">
       <div className="wrapper">
@@ -50,18 +55,22 @@ const DashboardPage = () => {
         {currentUser.movies && (
           <div className="card-container">
             {/* <h3>Movies</h3> */}
-            {currentUser.movies.map((movie, index) => (
-              <ItemCard key={index} category="movie" item={movie} />
-            ))}
-            {currentUser.books.map((book, index) => (
-              <ItemCard key={index} category="book" item={book} />
-            ))}
-            {currentUser.music.map((music, index) => (
-              <ItemCard key={index} category="music" item={music} />
-            ))}
-            {currentUser.events.map((event, index) => (
-              <ItemCard key={index} category="event" item={event} />
-            ))}
+            {checkCategory("movie") &&
+              currentUser.movies.map((movie, index) => (
+                <ItemCard key={index} category="movie" item={movie} />
+              ))}
+            {checkCategory("book") &&
+              currentUser.books.map((book, index) => (
+                <ItemCard key={index} category="book" item={book} />
+              ))}
+            {checkCategory("music") &&
+              currentUser.music.map((music, index) => (
+                <ItemCard key={index} category="music" item={music} />
+              ))}
+            {checkCategory("event") &&
+              currentUser.events.map((event, index) => (
+                <ItemCard key={index} category="event" item={event} />
+              ))}
           </div>
         )}
 

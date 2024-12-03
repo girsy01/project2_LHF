@@ -72,12 +72,20 @@ nav {
   background-color: vars.$color_5;
   position: relative;
   color: vars.$color_9;
+  border-radius: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 5px vars.$color_3;
+  }
 
   img {
     width: 250px;
     height: 250px;
     object-fit: cover;
     margin-bottom: 15px;
+    border-radius: 1px;
   }
 
   h2 {
