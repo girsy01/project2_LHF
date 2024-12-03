@@ -68,6 +68,64 @@ const AddInterestPage = () => {
     }
   };
 
+  const handleSaveSelection = () => {
+    if (!selectedItem) {
+      alert('Please select an item first');
+      return;
+    }
+  
+    let formattedItem;
+    switch(formData.mediaType) {
+      case 'movie':
+        formattedItem = {
+          id: selectedItem.id,
+          type: 'movie',
+          title: selectedItem.title,
+          year: selectedItem.release_date?.split('-')[0],
+          poster: selectedItem.poster_path ? 
+            `https://image.tmdb.org/t/p/w500${selectedItem.poster_path}` : null,
+          overview: selectedItem.overview
+        };
+        break;
+  
+      case 'music':
+        formattedItem = {
+          id: selectedItem.id,
+          type: 'music',
+          title: selectedItem.name,
+          artist: selectedItem.artists?.[0]?.name,
+          album: selectedItem.album?.name,
+          image: selectedItem.album?.images?.[0]?.url
+        };
+        break;
+  
+      case 'book':
+        formattedItem = {
+          id: selectedItem.id,
+          type: 'book',
+          title: selectedItem.volumeInfo.title,
+          author: selectedItem.volumeInfo.authors?.[0],
+          image: selectedItem.volumeInfo.imageLinks?.thumbnail,
+          publishedDate: selectedItem.volumeInfo.publishedDate
+        };
+        break;
+  
+      case 'event':
+        formattedItem = {
+          id: selectedItem.id,
+          type: 'event',
+          title: selectedItem.name,
+          date: selectedItem.dates.start.localDate,
+          venue: selectedItem._embedded?.venues?.[0]?.name,
+          image: selectedItem.images?.[0]?.url
+        };
+        break;
+    }
+  
+    console.log('Formatted item:', formattedItem);
+    navigate('/dashboard', { state: { savedItem: formattedItem }});
+  };
+
   return (
     <div className="form-container">
       <h1>Add a new interest</h1>
@@ -277,18 +335,12 @@ const AddInterestPage = () => {
               ))}
             </form>
           </div>
-          <button
-            onClick={() => {
-              if (selectedItem) {
-                console.log("Saving:", selectedItem);
-                // to a database?
-              } else {
-                alert("Please select an item first");
-              }
-            }}
-            disabled={!selectedItem}
-          >
-            Save Selection
+            <button
+              onClick={handleSaveSelection}
+              disabled={!selectedItem}
+              className="save-button"
+            >
+              Save Selection
           </button>
         </div>
       )}
