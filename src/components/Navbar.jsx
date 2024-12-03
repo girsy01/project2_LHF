@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import userImage from "../assets/user.png"; // Import the user image
 
 const Navbar = () => {
-  const {userId} = useParams()
+  const { userId } = useParams();
   const location = useLocation();
   const isSplashPage = location.pathname === "/";
 
@@ -31,7 +31,7 @@ const Navbar = () => {
           >
             Dashboard
           </NavLink>
-          <NavLink to={`/search/${userId}`} className={({ isActive }) => getNavLinkClass(isActive, true)}>
+          <NavLink to={`/search`} className={({ isActive }) => getNavLinkClass(isActive, true)}>
             Add Item
           </NavLink>
           <NavLink to="/about" className={({ isActive }) => getNavLinkClass(isActive, false)}>
@@ -49,5 +49,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
