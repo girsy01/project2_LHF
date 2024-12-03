@@ -6,7 +6,6 @@ import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
 
-
 const AddInterestPage = () => {
   const navigate = useNavigate();
 
@@ -53,15 +52,14 @@ const AddInterestPage = () => {
           setSearchResults(results);
           console.log("Book results:", results);
           break;
-        case 'event':
+        case "event":
           results = await searchEvents(formData.searchParams);
           setSearchResults(results);
-          console.log('Event results:', results);
+          console.log("Event results:", results);
           break;
         default:
           break;
       }
-
     } catch (error) {
       setError(error.message);
       console.error(error.message);
@@ -237,7 +235,7 @@ const AddInterestPage = () => {
 
       {searchResults?.length > 0 && (
         <div className="results-section">
-          <h3>Select an Option:</h3>
+          <h2>Select an Option:</h2>
           <div className="results-scroll-container">
             <form>
               {searchResults.map((item) => (
@@ -253,7 +251,7 @@ const AddInterestPage = () => {
                     {/* Movies */}
                     {item.title && (
                       <span>
-                        {item.title} ({item.release_date?.split('-')[0]})
+                        {item.title} ({item.release_date?.split("-")[0]})
                       </span>
                     )}
                     {/* Music */}
@@ -282,10 +280,10 @@ const AddInterestPage = () => {
           <button
             onClick={() => {
               if (selectedItem) {
-                console.log('Saving:', selectedItem);
+                console.log("Saving:", selectedItem);
                 // to a database?
               } else {
-                alert('Please select an item first');
+                alert("Please select an item first");
               }
             }}
             disabled={!selectedItem}

@@ -34,3 +34,23 @@
     }
   }
 }
+
+.results-section {
+  width: 100%;
+
+  label {
+    // border: 1px solid blue;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    span {
+      width: 80%;
+    }
+    input {
+      margin: 20px;
+      margin-left: 10px;
+      width: 20px;
+    }
+  }
+}
