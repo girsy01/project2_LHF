@@ -6,6 +6,7 @@ import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
 
+
 const AddInterestPage = () => {
   const navigate = useNavigate();
 
