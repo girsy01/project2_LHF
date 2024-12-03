@@ -2,7 +2,7 @@ import movieSVGlight from "../assets/movie-svg-light.svg";
 import bookSVGlight from "../assets/book-svg-light.svg";
 import musicSVGlight from "../assets/music-svg-light.svg";
 import eventsSVGlight from "../assets/events-svg-light.svg";
-import { FilterContext } from "../context/FilterContext";
+import { FilterContext } from "../contexts/FilterContext";
 import { useContext } from "react";
 
 const IconFilterItem = ({ category }) => {

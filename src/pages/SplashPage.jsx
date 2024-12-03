@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../contexts/AuthContext";
 // import logo from "../assets/logo.png";
 const SplashPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const { setLoggedIn } = useContext(AuthContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,10 +18,10 @@ const SplashPage = () => {
         const users = response.data;
         const foundUser = users.find((user) => user.user_name === username);
         const userPassword = foundUser.password;
-        
 
-        if (foundUser && userPassword === password) {
+        if (foundUser && String(userPassword) === String(password)) {
           navigate(`/dashboard/${foundUser.id}`);
+          setLoggedIn(true);
         } else if (!foundUser || userPassword !== password) {
           alert("Incorrect Credentials");
           setUsername("");

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import IconFilterItem from "../components/IconFilterItem";
-import { FilterContext } from "../context/FilterContext";
+import { FilterContext } from "../contexts/FilterContext";
 
 const DashboardPage = () => {
   const { userId } = useParams();
@@ -22,19 +22,15 @@ const DashboardPage = () => {
 
   const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
 
-  
+  useEffect(() => {
+    axios.get("http://localhost:5005/user").then((response) => {
+      const data = response.data;
 
-      useEffect(() => {
-        axios.get("http://localhost:5005/user").then((response) => {
-          const data = response.data;
+      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
 
-          const user = data.find((oneUser) => String(oneUser.id) === String(userId));
-
-          setCurrentUser(user);
-        });
-      }, [userId]);
-
-
+      setCurrentUser(user);
+    });
+  }, [userId]);
 
   return (
     <div className="dashboardPage">
@@ -67,7 +63,7 @@ const DashboardPage = () => {
               <ItemCard key={index} category="event" item={event} />
             ))}
           </div>
-        )}      
+        )}
 
         {/* <div className="card-container">
           {myItems

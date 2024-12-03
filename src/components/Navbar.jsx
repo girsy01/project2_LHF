@@ -1,15 +1,19 @@
 import logo from "../assets/logo.png";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import userImage from "../assets/user.png"; // Import the user image
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const { userId } = useParams();
   const location = useLocation();
   const isSplashPage = location.pathname === "/";
 
+  const { loggedIn } = useContext(AuthContext);
+
   const getNavLinkClass = (isActive, shouldApplySplash) => {
     let classes = isActive ? "selected" : "";
-    if (isSplashPage && shouldApplySplash) {
+    if (!loggedIn && shouldApplySplash) {
       classes += " splash";
     }
     return classes.trim();
@@ -19,7 +23,7 @@ const Navbar = () => {
     <nav>
       <div className="wrapper">
         {/* Dynamically set the link based on whether the user is on the splash page */}
-        <Link to={isSplashPage ? "/" : `/dashboard/${userId}`}>
+        <Link to={loggedIn ? "/" : `/dashboard/${userId}`}>
           <img src={logo} alt="Logo" />
         </Link>
 
