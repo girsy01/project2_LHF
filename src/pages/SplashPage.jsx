@@ -20,9 +20,14 @@ const SplashPage = () => {
         const userPassword = foundUser.password;
 
         if (foundUser && String(userPassword) === String(password)) {
-          navigate(`/dashboard/${foundUser.id}`);
+          // Update context and localStorage
           setLoggedIn(true);
           setUserId(foundUser.id);
+          localStorage.setItem("loggedIn", "true");
+          localStorage.setItem("userId", foundUser.id);
+
+          // Redirect to dashboard
+          navigate(`/dashboard/${foundUser.id}`);
         } else if (!foundUser || userPassword !== password) {
           alert("Incorrect Credentials");
           setUsername("");
