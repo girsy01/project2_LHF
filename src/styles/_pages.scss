@@ -27,10 +27,16 @@
       border-radius: 50px;
       font-size: 1.5rem;
       cursor: pointer;
-    }
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 
-    img {
-      height: 100%;
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px vars.$color_3;
+      }
+
+      img {
+        height: 100%;
+      }
     }
   }
 }

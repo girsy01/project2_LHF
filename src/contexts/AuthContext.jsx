@@ -6,7 +6,7 @@ const AuthWrapper = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
 
-  console.log("AuthWrapper loggedIn:", loggedIn);
+  // console.log("AuthWrapper loggedIn:", loggedIn);
 
   return (
     <AuthContext.Provider value={{ loggedIn, setLoggedIn, userId, setUserId }}>
