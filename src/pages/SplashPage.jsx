@@ -8,7 +8,7 @@ const SplashPage = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const { setLoggedIn } = useContext(AuthContext);
+  const { setLoggedIn, setUserId } = useContext(AuthContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -22,6 +22,7 @@ const SplashPage = () => {
         if (foundUser && String(userPassword) === String(password)) {
           navigate(`/dashboard/${foundUser.id}`);
           setLoggedIn(true);
+          setUserId(foundUser.id);
         } else if (!foundUser || userPassword !== password) {
           alert("Incorrect Credentials");
           setUsername("");

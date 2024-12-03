@@ -5,11 +5,11 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Navbar = () => {
-  const { userId } = useParams();
+  // const { userId } = useParams();
   const location = useLocation();
   const isSplashPage = location.pathname === "/";
 
-  const { loggedIn } = useContext(AuthContext);
+  const { loggedIn, userId } = useContext(AuthContext);
 
   const getNavLinkClass = (isActive, shouldApplySplash) => {
     let classes = isActive ? "selected" : "";
@@ -22,8 +22,8 @@ const Navbar = () => {
   return (
     <nav>
       <div className="wrapper">
-        {/* Dynamically set the link based on whether the user is on the splash page */}
-        <Link to={loggedIn ? "/" : `/dashboard/${userId}`}>
+        {/* Dynamically set the link based on whether the user is logged in */}
+        <Link to={loggedIn ? `/dashboard/${userId}` : "/"}>
           <img src={logo} alt="Logo" />
         </Link>
 
