@@ -40,8 +40,8 @@ const Navbar = () => {
           <NavLink to="/about" className={({ isActive }) => getNavLinkClass(isActive, false)}>
             About
           </NavLink>
-          <Link to="#">
-            <div className="img-profile">
+          <Link to="/profile">
+            <div className={`img-profile ${loggedIn && "logged-in"}`}>
               <img src={userImage} alt="User Profile" />
             </div>
           </Link>

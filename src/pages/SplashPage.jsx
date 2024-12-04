@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext";
 // import logo from "../assets/logo.png";
+
 const SplashPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

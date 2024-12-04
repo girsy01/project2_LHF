@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchMovies } from "../services/endpoints/movieAPI";
 import { searchMusic } from "../services/endpoints/musicAPI";
 import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 const AddInterestPage = () => {
   const navigate = useNavigate();
-
+  const { userId } = useContext(AuthContext);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -16,7 +17,14 @@ const AddInterestPage = () => {
     searchParams: {},
   });
 
-  const { searchResults, setSearchResults, loading, setLoading, error, setError } = useMedia();
+  const {
+    searchResults,
+    setSearchResults,
+    loading,
+    setLoading,
+    error,
+    setError,
+  } = useMedia();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,64 +75,35 @@ const AddInterestPage = () => {
       setLoading(false);
     }
   };
+ //for music fetch
+  async function handleSave() {
+    if (selectedItem) {
+      try {
+        const response = await axios.get(
+          `http://localhost:5005/user/${userId}`
+        );
+        const prevMusic = response.data.music || [];
 
-  const handleSaveSelection = () => {
-    if (!selectedItem) {
-      alert('Please select an item first');
-      return;
+        const updated = {
+          id: 1,
+          music: [
+            ...prevMusic,
+            {
+              band_name: selectedItem.artists[0].name,
+              album_cover: selectedItem.album.images[0].url,
+            },
+          ],
+        };
+
+        axios.patch(`http://localhost:5005/user/${userId}`, updated);
+        alert("Music Added Sucessfully!");
+      } catch {
+        (error) => console.log(error);
+      }
+    } else {
+      alert("Please select an item first");
     }
-  
-    let formattedItem;
-    switch(formData.mediaType) {
-      case 'movie':
-        formattedItem = {
-          id: selectedItem.id,
-          type: 'movie',
-          title: selectedItem.title,
-          year: selectedItem.release_date?.split('-')[0],
-          poster: selectedItem.poster_path ? 
-            `https://image.tmdb.org/t/p/w500${selectedItem.poster_path}` : null,
-          overview: selectedItem.overview
-        };
-        break;
-  
-      case 'music':
-        formattedItem = {
-          id: selectedItem.id,
-          type: 'music',
-          title: selectedItem.name,
-          artist: selectedItem.artists?.[0]?.name,
-          album: selectedItem.album?.name,
-          image: selectedItem.album?.images?.[0]?.url
-        };
-        break;
-  
-      case 'book':
-        formattedItem = {
-          id: selectedItem.id,
-          type: 'book',
-          title: selectedItem.volumeInfo.title,
-          author: selectedItem.volumeInfo.authors?.[0],
-          image: selectedItem.volumeInfo.imageLinks?.thumbnail,
-          publishedDate: selectedItem.volumeInfo.publishedDate
-        };
-        break;
-  
-      case 'event':
-        formattedItem = {
-          id: selectedItem.id,
-          type: 'event',
-          title: selectedItem.name,
-          date: selectedItem.dates.start.localDate,
-          venue: selectedItem._embedded?.venues?.[0]?.name,
-          image: selectedItem.images?.[0]?.url
-        };
-        break;
-    }
-  
-    console.log('Formatted item:', formattedItem);
-    navigate('/dashboard', { state: { savedItem: formattedItem }});
-  };
+  }
 
   return (
     <div className="form-container">
@@ -174,7 +153,11 @@ const AddInterestPage = () => {
             </div>
             <div className="form-group">
               <label>Language</label>
-              <select name="language" onChange={handleChange} defaultValue="en-US">
+              <select
+                name="language"
+                onChange={handleChange}
+                defaultValue="en-US"
+              >
                 <option value="en-US">English</option>
                 <option value="es-ES">Spanish</option>
                 <option value="fr-FR">French</option>
@@ -335,12 +318,11 @@ const AddInterestPage = () => {
               ))}
             </form>
           </div>
-            <button
-              onClick={handleSaveSelection}
-              disabled={!selectedItem}
-              className="save-button"
-            >
-              Save Selection
+          <button
+            onClick={handleSave}
+            disabled={!selectedItem}
+          >
+            Save Selection
           </button>
         </div>
       )}

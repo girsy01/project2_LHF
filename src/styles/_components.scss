@@ -34,6 +34,15 @@ nav {
     padding-inline: 10px;
     display: flex;
     align-items: center;
+
+    &:hover {
+      color: vars.$color_6;
+    }
+  }
+
+  .selected {
+    color: vars.$color_6;
+    text-decoration: underline;
   }
 
   .img-profile {
@@ -41,6 +50,14 @@ nav {
     background-color: vars.$color_5;
     border-radius: 50px;
   }
+
+  .logged-in {
+    // background-color: rgba(vars.$color_6, 0.3);
+    // box-shadow: 0 0 15px white;
+    background-color: vars.$color_1;
+    box-shadow: 0 0 10px vars.$color_6;
+  }
+
   img {
     height: 100%;
     padding: 0;
