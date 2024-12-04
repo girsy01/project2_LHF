@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchMovies } from "../services/endpoints/movieAPI";
 import { searchMusic } from "../services/endpoints/musicAPI";
 import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 const AddInterestPage = () => {
   const navigate = useNavigate();
-
+  const { userId } = useContext(AuthContext);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -16,7 +17,14 @@ const AddInterestPage = () => {
     searchParams: {},
   });
 
-  const { searchResults, setSearchResults, loading, setLoading, error, setError } = useMedia();
+  const {
+    searchResults,
+    setSearchResults,
+    loading,
+    setLoading,
+    error,
+    setError,
+  } = useMedia();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,6 +75,35 @@ const AddInterestPage = () => {
       setLoading(false);
     }
   };
+ //for music fetch
+  async function handleSave() {
+    if (selectedItem) {
+      try {
+        const response = await axios.get(
+          `http://localhost:5005/user/${userId}`
+        );
+        const prevMusic = response.data.music || [];
+
+        const updated = {
+          id: 1,
+          music: [
+            ...prevMusic,
+            {
+              band_name: selectedItem.artists[0].name,
+              album_cover: selectedItem.album.images[0].url,
+            },
+          ],
+        };
+
+        axios.patch(`http://localhost:5005/user/${userId}`, updated);
+        alert("Music Added Sucessfully!");
+      } catch {
+        (error) => console.log(error);
+      }
+    } else {
+      alert("Please select an item first");
+    }
+  }
 
   return (
     <div className="form-container">
@@ -116,7 +153,11 @@ const AddInterestPage = () => {
             </div>
             <div className="form-group">
               <label>Language</label>
-              <select name="language" onChange={handleChange} defaultValue="en-US">
+              <select
+                name="language"
+                onChange={handleChange}
+                defaultValue="en-US"
+              >
                 <option value="en-US">English</option>
                 <option value="es-ES">Spanish</option>
                 <option value="fr-FR">French</option>
@@ -278,14 +319,7 @@ const AddInterestPage = () => {
             </form>
           </div>
           <button
-            onClick={() => {
-              if (selectedItem) {
-                console.log("Saving:", selectedItem);
-                // to a database?
-              } else {
-                alert("Please select an item first");
-              }
-            }}
+            onClick={handleSave}
             disabled={!selectedItem}
           >
             Save Selection
