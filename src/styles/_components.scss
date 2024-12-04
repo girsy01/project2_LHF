@@ -52,8 +52,10 @@ nav {
   }
 
   .logged-in {
-    background-color: rgba(vars.$color_6, 0.3);
-    box-shadow: 0 0 15px white;
+    // background-color: rgba(vars.$color_6, 0.3);
+    // box-shadow: 0 0 15px white;
+    background-color: vars.$color_1;
+    box-shadow: 0 0 10px vars.$color_6;
   }
 
   img {
