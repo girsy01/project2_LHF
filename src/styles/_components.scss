@@ -41,6 +41,12 @@ nav {
     background-color: vars.$color_5;
     border-radius: 50px;
   }
+
+  .logged-in {
+    background-color: rgba(vars.$color_6, 0.3);
+    box-shadow: 0 0 15px white;
+  }
+
   img {
     height: 100%;
     padding: 0;

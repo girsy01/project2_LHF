@@ -41,7 +41,7 @@ const Navbar = () => {
             About
           </NavLink>
           <Link to="/profile">
-            <div className="img-profile">
+            <div className={`img-profile ${loggedIn && "logged-in"}`}>
               <img src={userImage} alt="User Profile" />
             </div>
           </Link>
