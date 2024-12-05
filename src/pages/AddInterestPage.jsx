@@ -180,8 +180,9 @@ const AddInterestPage = () => {
                     books: [
                       ...prevBooks,
                       {
-                        band_name: selectedItem.artists[0].name,
-                        album_cover: selectedItem.album.images[0].url,
+                        book_title: selectedItem.artists[0].name,
+                        author: "",
+                        book_cover: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D",
                       },
                     ],
                   };
