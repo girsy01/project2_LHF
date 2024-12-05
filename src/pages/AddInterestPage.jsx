@@ -6,6 +6,7 @@ import { searchBooks } from "../services/endpoints/bookAPI";
 import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
 import { AuthContext } from "../contexts/AuthContext";
+import axios from "axios";
 
 const AddInterestPage = () => {
   const navigate = useNavigate();
@@ -75,33 +76,124 @@ const AddInterestPage = () => {
       setLoading(false);
     }
   };
- //for music fetch
+  
   async function handleSave() {
-    if (selectedItem) {
-      try {
-        const response = await axios.get(
-          `http://localhost:5005/user/${userId}`
-        );
-        const prevMusic = response.data.music || [];
+    switch(formData.mediaType) {
+      case "music":
+        if (selectedItem) {
+          try {
+            const response = await axios.get(
+              `http://localhost:5005/user/${userId}`
+            );
+            const prevMusic = response.data.music || [];
+    
+            const updated = {
+              id: `${userId}`,
+              music: [
+                ...prevMusic,
+                {
+                  band_name: selectedItem.artists[0].name,
+                  album_cover: selectedItem.album.images[0].url,
+                },
+              ],
+            };
+    
+            axios.patch(`http://localhost:5005/user/${userId}`, updated);
+            alert("Music Added Sucessfully!");
+          } catch {
+            (error) => console.log(error);
+          }
+        } else {
+          alert("Please select an item first");
+        }
+        break;
 
-        const updated = {
-          id: 1,
-          music: [
-            ...prevMusic,
-            {
-              band_name: selectedItem.artists[0].name,
-              album_cover: selectedItem.album.images[0].url,
-            },
-          ],
-        };
+        case "movie":
+          if (selectedItem) {
+            try {
+              const response = await axios.get(
+                `http://localhost:5005/user/${userId}`
+              );
+              const prevMovies = response.data.movies || [];
+      
+              const updated = {
+                id: `${userId}`,
+                movies: [
+                  ...prevMovies,
+                  {
+                    title: selectedItem.original_title,
+                    year: Number(selectedItem.release_date.slice(0,4)),
+                    cover: "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdmllfGVufDB8fDB8fHww"
+                  },
+                ],
+              };
+      
+              axios.patch(`http://localhost:5005/user/${userId}`, updated);
+              alert("Movie Added Sucessfully!");
+            } catch {
+              (error) => console.log(error);
+            }
+          } else {
+            alert("Please select an item first");
+          }
+          break;
 
-        axios.patch(`http://localhost:5005/user/${userId}`, updated);
-        alert("Music Added Sucessfully!");
-      } catch {
-        (error) => console.log(error);
-      }
-    } else {
-      alert("Please select an item first");
+          case "event":
+            if (selectedItem) {
+              try {
+                const response = await axios.get(
+                  `http://localhost:5005/user/${userId}`
+                );
+                const prevEvents = response.data.events || [];
+        
+                const updated = {
+                  id: `${userId}`,
+                  events: [
+                    ...prevEvents,
+                    {
+                      event_name: selectedItem.name,
+                      event_poster: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bXVzaWN8ZW58MHx8MHx8fDA%3D",
+                    },
+                  ],
+                };
+        
+                axios.patch(`http://localhost:5005/user/${userId}`, updated);
+                alert("Event Added Sucessfully!");
+              } catch {
+                (error) => console.log(error);
+              }
+            } else {
+              alert("Please select an item first");
+            }
+            break;
+
+            case "book":
+              if (selectedItem) {
+                try {
+                  const response = await axios.get(
+                    `http://localhost:5005/user/${userId}`
+                  );
+                  const prevBooks = response.data.books || [];
+          
+                  const updated = {
+                    id: `${userId}`,
+                    books: [
+                      ...prevBooks,
+                      {
+                        band_name: selectedItem.artists[0].name,
+                        album_cover: selectedItem.album.images[0].url,
+                      },
+                    ],
+                  };
+          
+                  axios.patch(`http://localhost:5005/user/${userId}`, updated);
+                  alert("Music Added Sucessfully!");
+                } catch {
+                  (error) => console.log(error);
+                }
+              } else {
+                alert("Please select an item first");
+              }
     }
   }
 
@@ -318,10 +410,7 @@ const AddInterestPage = () => {
               ))}
             </form>
           </div>
-          <button
-            onClick={handleSave}
-            disabled={!selectedItem}
-          >
+          <button onClick={handleSave} disabled={!selectedItem}>
             Save Selection
           </button>
         </div>
