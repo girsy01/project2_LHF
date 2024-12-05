@@ -168,7 +168,7 @@ const AddInterestPage = () => {
             break;
 
             case "book":
-              if (selectedItem) {
+              if (selectedItem) {                
                 try {
                   const response = await axios.get(
                     `http://localhost:5005/user/${userId}`
@@ -180,15 +180,15 @@ const AddInterestPage = () => {
                     books: [
                       ...prevBooks,
                       {
-                        book_title: selectedItem.artists[0].name,
-                        author: "",
-                        book_cover: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3xlbnwwfHwwfHx8MA%3D%3D",
+                        book_title: selectedItem.volumeInfo.title,
+                        author: selectedItem.volumeInfo.authors[0],
+                        book_cover: selectedItem.volumeInfo.imageLinks.thumbnail
                       },
                     ],
                   };
           
                   axios.patch(`http://localhost:5005/user/${userId}`, updated);
-                  alert("Music Added Sucessfully!");
+                  alert("Book Added Sucessfully!");
                 } catch {
                   (error) => console.log(error);
                 }

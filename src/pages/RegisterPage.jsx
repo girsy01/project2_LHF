@@ -38,7 +38,7 @@ const RegisterPage = () => {
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </label>
-        <button>Register</button>
+        <button className="btn-dark">Register</button>
       </form>
     </div>
   );
