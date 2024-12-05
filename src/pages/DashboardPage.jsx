@@ -1,5 +1,5 @@
 import ItemCard from "../components/ItemCard";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import IconFilterItem from "../components/IconFilterItem";
@@ -58,7 +58,9 @@ const DashboardPage = () => {
             {/* <h3>Movies</h3> */}
             {checkCategory("movie") &&
               currentUser.movies.map((movie, index) => (
+                <Link to="/itemdetail">
                 <ItemCard key={index} category="movie" item={movie} />
+                </Link>
               ))}
             {checkCategory("book") &&
               currentUser.books.map((book, index) => (

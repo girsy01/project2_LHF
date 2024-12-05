@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import AddInterestPage from "./pages/AddInterestPage";
 import AboutPage from "./pages/AboutPage";
 import ProfilePage from "./pages/ProfilePage";
+import ItemDetailPage from "./pages/ItemDetailPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/itemdetail" element={<ItemDetailPage/>} />
         <Route path="/uikit" element={<UIKitPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
