@@ -11,6 +11,7 @@ import AboutPage from "./pages/AboutPage";
 import ProfilePage from "./pages/ProfilePage";
 import UserMessage from "./components/UserMessage";
 import CommunityPage from "./pages/CommunityPage";
+import CustomFileInput from "./components/CustomFileInput";
 
 function App() {
   return (
