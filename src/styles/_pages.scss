@@ -138,7 +138,7 @@ section {
     color: vars.$color_8;
 
     &:hover {
-      transform: translateX(10px) scale(1.05);
+      transform: translate(-10px) scale(1.05);
       background: vars.$color_3;
     }
   }
@@ -157,7 +157,7 @@ section {
     transition: all 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px) scale(1.05);
+      transform: translate(-10px) scale(1.05);
       background: vars.$color_3;
     }
 
