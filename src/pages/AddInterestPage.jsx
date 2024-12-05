@@ -312,15 +312,6 @@ const AddInterestPage = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
-              <label>ISBN</label>
-              <input
-                type="text"
-                name="isbn"
-                placeholder="Enter ISBN (optional)"
-                onChange={handleChange}
-              />
-            </div>
           </>
         )}
 
