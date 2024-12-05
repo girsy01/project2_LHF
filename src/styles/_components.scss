@@ -52,8 +52,6 @@ nav {
   }
 
   .logged-in {
-    // background-color: rgba(vars.$color_6, 0.3);
-    // box-shadow: 0 0 15px white;
     background-color: vars.$color_1;
     box-shadow: 0 0 10px vars.$color_6;
   }
@@ -71,12 +69,10 @@ nav {
 //Card
 
 .card-container {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  padding: 20px;
   width: fit-content;
   margin: 0 auto;
 }
@@ -165,4 +161,14 @@ nav {
     width: 100%;
     padding: 8px;
   }
+}
+
+//User Message
+.userMessage {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(vars.$color_1, 0.8);
+  padding: 10px 20px;
+  color: vars.$color_8;
 }

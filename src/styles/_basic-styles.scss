@@ -42,7 +42,7 @@ hr {
 
 em {
   font-style: normal;
-  text-shadow: 0 0 2px vars.$color_2;
+  text-decoration: underline;
 }
 
 .wrapper {
@@ -72,6 +72,10 @@ button {
 .btn-dark {
   background-color: vars.$color_8;
   color: vars.$color_1;
+}
+
+.btn-alarm {
+  background-color: vars.$color_4;
 }
 
 form {

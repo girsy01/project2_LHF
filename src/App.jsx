@@ -10,6 +10,7 @@ import AddInterestPage from "./pages/AddInterestPage";
 import AboutPage from "./pages/AboutPage";
 import ProfilePage from "./pages/ProfilePage";
 import ItemDetailPage from "./pages/ItemDetailPage";
+import UserMessage from "./components/UserMessage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/uikit" element={<UIKitPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <UserMessage />
     </>
   );
 }
