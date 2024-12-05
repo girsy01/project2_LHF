@@ -74,3 +74,166 @@
     min-width: 130px;
   }
 }
+// about page
+
+#about-page-container {
+  max-width: vars.$wrapper-width;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: vars.$color_1;
+  background-color: vars.$color_8;
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: vars.$color_1;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: vars.$color_1;
+}
+
+section {
+  margin-bottom: 60px;
+  padding: 30px;
+  background: vars.$color_8;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(vars.$color_9, 0.3);
+  border: 1px solid vars.$color_7;
+}
+
+// Overview Section
+#overview-section {
+  .slogan {
+    text-align: center;
+    font-size: 1.5rem;
+    color: vars.$color_3;
+    margin: 20px 0;
+  }
+
+  #overview-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    color: vars.$color_1;
+  }
+}
+
+// Features Section
+#features-list {
+  list-style: none;
+  padding: 0;
+
+  .features-list-item {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    background: vars.$color_1;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    color: vars.$color_8;
+
+    &:hover {
+      transform: translateX(10px) scale(1.05);
+      background: vars.$color_3;
+    }
+  }
+}
+
+// How Section
+#steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+
+  .step {
+    padding: 20px;
+    background: vars.$color_1;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: vars.$color_3;
+    }
+
+    h3 {
+      color: vars.$color_6;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    p {
+      text-align: center;
+      color: vars.$color_7;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 8px;
+        color: vars.$color_8;
+      }
+    }
+  }
+}
+
+// API Section
+#api-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+
+  .api-list-item {
+    padding: 20px;
+    text-align: center;
+    background: vars.$color_7;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s;
+    color: vars.$color_1;
+
+    &:hover {
+      background: vars.$color_6;
+    }
+  }
+}
+
+// Contact Section
+#contact-section {
+  text-align: center;
+
+  p {
+    font-size: 1.1rem;
+    color: vars.$color_1;
+  }
+}
+
+// Media Queries
+@media (max-width: 768px) {
+  #about-page-container {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  #steps {
+    grid-template-columns: 1fr;
+  }
+}
