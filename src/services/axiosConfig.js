@@ -50,12 +50,9 @@ spotifyAxios.interceptors.request.use(
     }
 );
 
-// Google Books
+// Open Library Books
 export const booksAxios = axios.create({
-    baseURL: 'https://www.googleapis.com/books/v1',
-    params: {
-        key: import.meta.env.VITE_BOOKS_KEY
-    }
+    baseURL: 'https://openlibrary.org'
 });
 
 // Ticketmaster (Events)
