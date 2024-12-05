@@ -71,12 +71,10 @@ nav {
 //Card
 
 .card-container {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  padding: 20px;
   width: fit-content;
   margin: 0 auto;
 }
