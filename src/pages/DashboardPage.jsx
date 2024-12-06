@@ -29,7 +29,7 @@ const DashboardPage = () => {
 
       const user = data.find((oneUser) => String(oneUser.id) === String(userId));
 
-      setCurrentUser(user);
+      setCurrentUser(user);      
     });
   }, [userId]);
 
@@ -57,22 +57,24 @@ const DashboardPage = () => {
           <div className="card-container">
             {/* <h3>Movies</h3> */}
             {checkCategory("movie") &&
-              currentUser.movies.map((movie, index) => (
-                <Link to="/itemdetail">
-                <ItemCard key={index} category="movie" item={movie} />
+              currentUser.movies.map((movie) => (
+                <Link to={`/${userId}/moviedetail/${movie.id}`} key={movie.id}>
+                <ItemCard  category="movie" item={movie} itemId={movie.id}/>
                 </Link>
               ))}
             {checkCategory("book") &&
-              currentUser.books.map((book, index) => (
-                <ItemCard key={index} category="book" item={book} />
+              currentUser.books.map((book) => (                
+                <Link to={`/${userId}/bookdetail/${book.id}`} key={book.id}>
+                <ItemCard  category="book" item={book} itemId={book.id}/>
+                </Link>
               ))}
             {checkCategory("music") &&
-              currentUser.music.map((music, index) => (
-                <ItemCard key={index} category="music" item={music} />
+              currentUser.music.map((music, id) => (
+                <ItemCard key={id} category="music" item={music} />
               ))}
             {checkCategory("event") &&
-              currentUser.events.map((event, index) => (
-                <ItemCard key={index} category="event" item={event} />
+              currentUser.events.map((event, id) => (
+                <ItemCard key={id} category="event" item={event} />
               ))}
           </div>
         )}
