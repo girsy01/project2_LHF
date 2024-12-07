@@ -38,6 +38,10 @@
         height: 100%;
       }
     }
+    .active {
+      box-shadow: 0 0 10px vars.$color_3;
+      background-color: rgba(vars.$color_6, 0.2);
+    }
   }
 }
 
@@ -300,14 +304,14 @@ section {
 #itemDetails img {
   height: 450px;
   border-radius: 15px;
-  margin: 25px
+  margin: 25px;
 }
 
 .textDetails {
   margin: 50px;
-  width:850px;
+  width: 850px;
   text-align: left;
-  justify-content: left;  
+  justify-content: left;
 }
 
 .textDetails em {
