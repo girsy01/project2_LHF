@@ -94,7 +94,7 @@ const AddInterestPage = () => {
               ],
             };
 
-            axios.patch(`http://localhost:5005/user/${userId}`, updated);
+            axios.patch(`${API_URL}/user/${userId}`, updated);
             alert("Music Added Sucessfully!");
             navigate(`/dashboard/${userId}`);
           } catch {
@@ -109,7 +109,7 @@ const AddInterestPage = () => {
         if (selectedItem) {
           console.log(selectedItem);
           try {
-            const response = await axios.get(`http://localhost:5005/user/${userId}`);
+            const response = await axios.get(`${API_URL}/user/${userId}`);
             const prevMovies = response.data.movies || [];
 
             const updated = {
@@ -127,7 +127,7 @@ const AddInterestPage = () => {
               ],
             };
 
-            axios.patch(`http://localhost:5005/user/${userId}`, updated);
+            axios.patch(`${API_URL}/user/${userId}`, updated);
             alert("Movie Added Sucessfully!");
             navigate(`/dashboard/${userId}`);
           } catch {
@@ -143,7 +143,7 @@ const AddInterestPage = () => {
         if (selectedItem) {
           console.log(selectedItem);
           try {
-            const response = await axios.get(`http://localhost:5005/user/${userId}`);
+            const response = await axios.get(`${API_URL}/user/${userId}`);
             const prevEvents = response.data.events || [];
 
             const updated = {
@@ -160,7 +160,7 @@ const AddInterestPage = () => {
               ],
             };
 
-            axios.patch(`http://localhost:5005/user/${userId}`, updated);
+            axios.patch(`${API_URL}/user/${userId}`, updated);
             alert("Event Added Sucessfully!");
             navigate(`/dashboard/${userId}`);
           } catch {
@@ -175,7 +175,7 @@ const AddInterestPage = () => {
         if (selectedItem) {
           console.log(selectedItem);
           try {
-            const response = await axios.get(`http://localhost:5005/user/${userId}`);
+            const response = await axios.get(`${API_URL}/user/${userId}`);
             const prevBooks = response.data.books || [];
 
             const updated = {
@@ -192,7 +192,7 @@ const AddInterestPage = () => {
               ],
             };
 
-            axios.patch(`http://localhost:5005/user/${userId}`, updated);
+            axios.patch(`${API_URL}/user/${userId}`, updated);
             alert("Book Added Sucessfully!");
             navigate(`/dashboard/${userId}`);
           } catch {
