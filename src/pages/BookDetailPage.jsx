@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 const BookDetailPage = () => {
   const { userId, itemId } = useParams();
-
+  const navigate = useNavigate()
   const [currentItem, setCurrentItem] = useState({});
   
   useEffect(() => {
@@ -19,6 +19,25 @@ const BookDetailPage = () => {
     });
   }, [userId, itemId]);
 
+  async function handleDelete() {
+    try {
+      const response = await axios.get(
+        `http://localhost:5005/user/${userId}`
+      );
+      const prevBooks = response.data.books || [];
+
+      const updated = {
+        id: `${userId}`,
+        books: prevBooks.filter((book) => String(book.id) !== String(itemId))
+      }
+
+      await axios.patch(`http://localhost:5005/user/${userId}`, updated);
+      alert("Book Deleted Sucessfully!");
+      navigate(`/dashboard/${userId}`)      
+    } catch (error) {console.log(error)}
+  }
+
+
   return (
     <div id="itemDetails">
       <img src={currentItem.book_cover} />
@@ -26,6 +45,7 @@ const BookDetailPage = () => {
         <h1>{currentItem.book_title}</h1>
         <h2>Published in : {currentItem.published_date}</h2>
         <p><em>Summary :</em> {currentItem.summary}</p>
+        <button onClick={handleDelete}>Delete Item</button>
       </div>
     </div>
   );

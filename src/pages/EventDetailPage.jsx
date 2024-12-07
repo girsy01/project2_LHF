@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const EventDetailPage = () => {
     const { userId, itemId } = useParams();
-
+    const navigate = useNavigate();
     const [currentItem, setCurrentItem] = useState({});
 
     useEffect(() => {
@@ -19,6 +19,25 @@ const EventDetailPage = () => {
         setCurrentItem(item);
       });
     }, [userId, itemId]);
+
+    async function handleDelete() {
+        try {
+          const response = await axios.get(
+            `http://localhost:5005/user/${userId}`
+          );
+          const prevEvents = response.data.events || [];
+    
+          const updated = {
+            id: `${userId}`,
+            events: prevEvents.filter((event) => String(event.id) !== String(itemId))
+          }
+    
+          await axios.patch(`http://localhost:5005/user/${userId}`, updated);
+          alert("Event Deleted Sucessfully!");
+          navigate(`/dashboard/${userId}`)      
+        } catch (error) {console.log(error)}
+      }
+    
   
     return (
       <div id="itemDetails">
@@ -26,6 +45,7 @@ const EventDetailPage = () => {
         <div className="textDetails">
           <h1>{currentItem.event_name}</h1>
           <p>{currentItem.overview}</p>
+          <button onClick={handleDelete}>Delete Item</button>
         </div>
       </div>
     );
