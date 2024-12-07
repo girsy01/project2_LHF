@@ -6,7 +6,7 @@ import { FilterContext } from "../contexts/FilterContext";
 import { useContext } from "react";
 
 const IconFilterItem = ({ category }) => {
-  const { setCategoryFilter } = useContext(FilterContext);
+  const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
 
   let svgPath = "";
   if (category === "book") svgPath = bookSVGlight;
@@ -15,7 +15,10 @@ const IconFilterItem = ({ category }) => {
   else if (category === "event") svgPath = eventsSVGlight;
 
   return (
-    <div className="category-icon" onClick={() => setCategoryFilter(category)}>
+    <div
+      className={`category-icon ${categoryFilter === category ? "active" : ""}`}
+      onClick={() => setCategoryFilter(category)}
+    >
       {svgPath.length ? <img src={svgPath} /> : <div className="">ALL</div>}
     </div>
   );

@@ -38,7 +38,16 @@
         height: 100%;
       }
     }
+    .active {
+      box-shadow: 0 0 10px vars.$color_3;
+      background-color: rgba(vars.$color_6, 0.2);
+    }
   }
+}
+
+#search-bar {
+  max-width: 500px;
+  margin: 20px auto;
 }
 
 .results-section {
@@ -295,7 +304,7 @@ section {
 #itemDetails img {
   height: 450px;
   border-radius: 15px;
-  margin: 25px
+  margin: 25px;
 }
 
 .textDetails {
