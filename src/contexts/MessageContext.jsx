@@ -12,6 +12,8 @@ const MessageWrapper = ({ children }) => {
   const showSuccessMessage = (event, userId) => {
     if (event === "delete") setMessage("Item deleted");
     else if (event === "add") setMessage("Item added");
+    else if (event === "delete user") setMessage("Profile deleted");
+    else if (event === "register") setMessage("You can now login with these credentials");
     setShowDeleteMessage(true);
     setTimeout(() => {
       setMessage("");

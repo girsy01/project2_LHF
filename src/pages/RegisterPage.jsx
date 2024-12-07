@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../config/apiConfig";
+import { MessageContext } from "../contexts/MessageContext";
 
 const RegisterPage = () => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const navigate = useNavigate();
+  const { showSuccessMessage } = useContext(MessageContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,6 +27,8 @@ const RegisterPage = () => {
         };
 
         axios.post(`${API_URL}/user`, newUser);
+        showSuccessMessage("register");
+        navigate("/");
       }
     });
   }
