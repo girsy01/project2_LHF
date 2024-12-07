@@ -1,5 +1,5 @@
 import ItemCard from "../components/ItemCard";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import IconFilterItem from "../components/IconFilterItem";
@@ -12,6 +12,7 @@ const DashboardPage = () => {
   const [currentUser, setCurrentUser] = useState({});
   const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
@@ -110,6 +111,9 @@ const DashboardPage = () => {
               <ItemCard category={item.category} />
             ))}
         </div> */}
+        <button className="btn-light" onClick={() => navigate("/search")}>
+          Add New Item
+        </button>
       </div>
     </div>
   );

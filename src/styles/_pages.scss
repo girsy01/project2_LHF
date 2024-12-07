@@ -43,6 +43,14 @@
       background-color: rgba(vars.$color_6, 0.2);
     }
   }
+
+  .wrapper {
+    > button {
+      max-width: 170px;
+      margin-top: 20px;
+      margin-inline: auto;
+    }
+  }
 }
 
 #search-bar {
