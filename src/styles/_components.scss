@@ -27,7 +27,7 @@ nav {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    
+
     img {
       height: 100%;
       width: 100%;
@@ -86,7 +86,7 @@ nav {
     padding: 15px;
     z-index: 100;
     margin-right: 15px;
-  
+
     span {
       display: block;
       width: 25px;
@@ -95,7 +95,7 @@ nav {
       margin: 5px 0;
       transition: 0.3s;
     }
-  
+
     &.open {
       span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
@@ -108,19 +108,19 @@ nav {
       }
     }
   }
-  
+
   @media (max-width: 768px) {
     .menu {
       display: none;
     }
-  
+
     .burger-menu {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
-  
+
     .mobile-menu {
       position: absolute;
       top: 70px;
@@ -164,7 +164,7 @@ nav {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
-  max-width: vars.$wrapper-width;;
+  max-width: vars.$wrapper-width;
   margin: 0 auto;
 }
 
@@ -181,7 +181,7 @@ nav {
 
   &:hover {
     transform: scale(1.01);
-    box-shadow: 0 0 5px vars.$color_3;
+    box-shadow: 0 0 5px vars.$color_1;
   }
 
   img {
@@ -252,18 +252,18 @@ nav {
 
 @media (min-width: 1200px) {
   .card-container {
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .card-container{
+  .card-container {
     grid-template-columns: 1fr;
   }
 
   .card {
     width: 100%;
-    
+
     img {
       width: 100%;
       height: auto;

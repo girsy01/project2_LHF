@@ -7,12 +7,14 @@ import { searchEvents } from "../services/endpoints/eventAPI";
 import { useMedia } from "../contexts/MediaContext";
 import { AuthContext } from "../contexts/AuthContext";
 import { API_URL } from "../config/apiConfig";
+import { MessageContext } from "../contexts/MessageContext";
 import axios from "axios";
 
 const AddInterestPage = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
   const [selectedItem, setSelectedItem] = useState(null);
+  const { showSuccessMessage } = useContext(MessageContext);
 
   const [formData, setFormData] = useState({
     mediaType: "movie",
@@ -95,8 +97,8 @@ const AddInterestPage = () => {
             };
 
             axios.patch(`${API_URL}/user/${userId}`, updated);
-            alert("Music Added Sucessfully!");
-            navigate(`/dashboard/${userId}`);
+            // alert("Music Added Sucessfully!");
+            showSuccessMessage("add", userId);
           } catch {
             (error) => console.log(error);
           }
@@ -128,7 +130,8 @@ const AddInterestPage = () => {
             };
 
             axios.patch(`${API_URL}/user/${userId}`, updated);
-            alert("Movie Added Sucessfully!");
+            // alert("Movie Added Sucessfully!");
+            showSuccessMessage("add", userId);
             navigate(`/dashboard/${userId}`);
           } catch {
             (error) => console.log(error);
@@ -161,7 +164,8 @@ const AddInterestPage = () => {
             };
 
             axios.patch(`${API_URL}/user/${userId}`, updated);
-            alert("Event Added Sucessfully!");
+            // alert("Event Added Sucessfully!");
+            showSuccessMessage("add", userId);
             navigate(`/dashboard/${userId}`);
           } catch {
             (error) => console.log(error);
@@ -193,7 +197,8 @@ const AddInterestPage = () => {
             };
 
             axios.patch(`${API_URL}/user/${userId}`, updated);
-            alert("Book Added Sucessfully!");
+            // alert("Book Added Sucessfully!");
+            showSuccessMessage("add", userId);
             navigate(`/dashboard/${userId}`);
           } catch {
             (error) => console.log(error);
