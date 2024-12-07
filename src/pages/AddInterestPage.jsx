@@ -18,14 +18,7 @@ const AddInterestPage = () => {
     searchParams: {},
   });
 
-  const {
-    searchResults,
-    setSearchResults,
-    loading,
-    setLoading,
-    error,
-    setError,
-  } = useMedia();
+  const { searchResults, setSearchResults, loading, setLoading, error, setError } = useMedia();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -76,18 +69,16 @@ const AddInterestPage = () => {
       setLoading(false);
     }
   };
-  
+
   async function handleSave() {
-    switch(formData.mediaType) {
+    switch (formData.mediaType) {
       case "music":
         if (selectedItem) {
-          console.log(selectedItem)
+          console.log(selectedItem);
           try {
-            const response = await axios.get(
-              `http://localhost:5005/user/${userId}`
-            );
+            const response = await axios.get(`http://localhost:5005/user/${userId}`);
             const prevMusic = response.data.music || [];
-    
+
             const updated = {
               id: `${userId}`,
               music: [
@@ -101,7 +92,7 @@ const AddInterestPage = () => {
                 },
               ],
             };
-    
+
             axios.patch(`http://localhost:5005/user/${userId}`, updated);
             alert("Music Added Sucessfully!");
             navigate(`/dashboard/${userId}`)
@@ -145,7 +136,8 @@ const AddInterestPage = () => {
           } else {
             alert("Please select an item first");
           }
-          break;
+        
+        break;
 
           case "event":
             if (selectedItem) {
@@ -263,11 +255,7 @@ const AddInterestPage = () => {
             </div>
             <div className="form-group">
               <label>Language</label>
-              <select
-                name="language"
-                onChange={handleChange}
-                defaultValue="en-US"
-              >
+              <select name="language" onChange={handleChange} defaultValue="en-US">
                 <option value="en-US">English</option>
                 <option value="es-ES">Spanish</option>
                 <option value="fr-FR">French</option>
@@ -419,7 +407,7 @@ const AddInterestPage = () => {
               ))}
             </form>
           </div>
-          <button onClick={handleSave} disabled={!selectedItem}>
+          <button className="btn-light" onClick={handleSave} disabled={!selectedItem}>
             Save Selection
           </button>
         </div>
