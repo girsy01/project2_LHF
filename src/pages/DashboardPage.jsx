@@ -57,7 +57,7 @@ const DashboardPage = () => {
 
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search for titles..."
           id="search-bar"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
