@@ -100,16 +100,18 @@ const ProfilePage = () => {
         <h3>Currently not logged in</h3>
       )}
       {imageUrl && <img src={imageUrl} className="profileImage" />}
-      <form onSubmit={handleAddImage}>
-        <p>Profile Image</p>
-        <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} />
-        <CustomFileInput
-          className="my-custom-file-input"
-          onChange={(e) => setProfileImage(e.target.files[0])}
-        />
+      {loggedIn && (
+        <form onSubmit={handleAddImage}>
+          <p>Profile Image</p>
+          <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} />
+          <CustomFileInput
+            className="my-custom-file-input"
+            onChange={(e) => setProfileImage(e.target.files[0])}
+          />
 
-        <button className="btn-dark">Upload</button>
-      </form>
+          <button className="btn-dark">Upload</button>
+        </form>
+      )}
       {loggedIn ? (
         <div>
           <button className="btn-light" onClick={handleLogout}>
