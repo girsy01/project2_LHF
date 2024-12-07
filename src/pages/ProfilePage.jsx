@@ -3,15 +3,15 @@ import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { MessageContext } from "../contexts/MessageContext";
+import CustomFileInput from "../components/CustomFileInput";
 
 const ProfilePage = () => {
   const { userId } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState(null); // Initialize with null
   const navigate = useNavigate();
-  const { loggedIn, setLoggedIn, setUserId } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, setUserId, imageUrl, setImageUrl } = useContext(AuthContext);
   const { setMessage, setShowDeleteMessage } = useContext(MessageContext);
   const [profileImage, setProfileImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     if (userId) {
@@ -83,6 +83,10 @@ const ProfilePage = () => {
       .catch((err) => console.log(err));
   }
 
+  const handleFileChange = (event) => {
+    setProfileImage(e.target.files[0]);
+  };
+
   return (
     <div className="wrapper profilePage">
       <h1>Your Profile</h1>
@@ -97,17 +101,22 @@ const ProfilePage = () => {
       <form onSubmit={handleAddImage}>
         <p>Profile Image</p>
         <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} />
+        <CustomFileInput
+          className="my-custom-file-input"
+          onChange={(e) => setProfileImage(e.target.files[0])}
+        />
+
         <button className="btn-dark">Upload</button>
       </form>
       {loggedIn ? (
-        <>
+        <div>
           <button className="btn-light" onClick={handleLogout}>
             Logout
           </button>
           <button className="btn-alarm" onClick={handleDelete}>
             Delete
           </button>
-        </>
+        </div>
       ) : (
         <Link to="/">
           <button className="btn-light">Login</button>

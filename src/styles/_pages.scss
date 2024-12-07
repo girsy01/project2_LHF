@@ -69,7 +69,6 @@
   align-items: center;
 
   button {
-    margin-top: 30px;
     width: 15%;
     min-width: 130px;
   }
@@ -83,6 +82,10 @@
   }
 
   form {
+    margin: 30px 10px;
+    padding: 15px;
+    width: fit-content;
+
     .file-input {
       display: none; /* Completely hides the native file input */
     }
@@ -106,7 +109,7 @@
     }
 
     input {
-      margin-top: 10px;
+      display: none;
     }
 
     button {
@@ -276,5 +279,14 @@ section {
 
   #steps {
     grid-template-columns: 1fr;
+  }
+}
+
+//Splash Page
+.splash-page {
+  text-align: center;
+  h2 {
+    color: vars.$color_2;
+    font-size: 1.5rem;
   }
 }

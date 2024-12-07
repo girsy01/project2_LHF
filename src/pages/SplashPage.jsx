@@ -43,7 +43,7 @@ const SplashPage = () => {
   }
 
   return (
-    <div>
+    <div className="splash-page">
       {/* <img src={logo} alt="" /> */}
       <form onSubmit={handleSubmit}>
         <label>
@@ -68,6 +68,7 @@ const SplashPage = () => {
         <button className="btn-dark">Login</button>
       </form>
       <Link to="/register">
+        <h2>No account yet?</h2>
         <button className="btn-light">Register</button>
       </Link>
     </div>
