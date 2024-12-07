@@ -14,6 +14,8 @@ const AuthWrapper = ({ children }) => {
     return localStorage.getItem("userId") || null;
   });
 
+  const [imageUrl, setImageUrl] = useState("");
+
   // Update localStorage whenever loggedIn changes
   useEffect(() => {
     localStorage.setItem("loggedIn", loggedIn);
@@ -29,7 +31,9 @@ const AuthWrapper = ({ children }) => {
   }, [userId]);
 
   return (
-    <AuthContext.Provider value={{ loggedIn, setLoggedIn, userId, setUserId }}>
+    <AuthContext.Provider
+      value={{ loggedIn, setLoggedIn, userId, setUserId, imageUrl, setImageUrl }}
+    >
       {children}
     </AuthContext.Provider>
   );

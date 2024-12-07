@@ -8,8 +8,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const ItemCard = ({ category, item }) => {
-  
-
   let catIcon = "";
   if (category === "book") catIcon = bookSVG;
   else if (category === "movie") catIcon = movieSVG;
@@ -30,32 +28,33 @@ const ItemCard = ({ category, item }) => {
     else if (category === "movie") titles = item.title;
     else if (category === "music") titles = item.band_name;
     else if (category === "event") titles = item.event_name;
-  };
+  }
 
-  
+  function catFirstLetterUpperCase(c) {
+    return c[0].toUpperCase() + c.slice(1);
+  }
 
   return (
     <div className="card">
       <img src={imgSrc} alt="" />
-      <div className="like pos-absolute-right ">
+      {/* <div className="like pos-absolute-right ">
         <img src={heartSVGnoFill} className="liked" />
-        {/* <img src={heartSVGred} className="liked" /> */}
-      </div>
-      <div className="category-icon pos-absolute-left ">
+      </div> */}
+      <div className="category-icon pos-absolute-right ">
         <img src={catIcon} />
       </div>
 
       <div className="card-infos">
         <div className="details">
           <h2>{titles}</h2>
-          <p>{category}</p>
+          <p>{catFirstLetterUpperCase(category)}</p>
         </div>
-        <div className="total-likes">
+        {/* <div className="total-likes">
           <div>10</div>
           <div className="like">
             <img src={heartSVGred} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

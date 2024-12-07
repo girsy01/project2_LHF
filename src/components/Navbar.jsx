@@ -8,7 +8,7 @@ const Navbar = () => {
   // const { userId } = useParams();
   const location = useLocation();
 
-  const { loggedIn, userId } = useContext(AuthContext);
+  const { loggedIn, userId, imageUrl } = useContext(AuthContext);
 
   const getNavLinkClass = (isActive, shouldApplySplash) => {
     let classes = isActive ? "selected" : "";
@@ -45,7 +45,11 @@ const Navbar = () => {
           </NavLink>
           <Link to="/profile">
             <div className={`img-profile ${loggedIn && "logged-in"}`}>
-              <img src={userImage} alt="User Profile" />
+              <img
+                src={imageUrl ? imageUrl : userImage}
+                className={imageUrl && "img-photo"}
+                alt="User Profile"
+              />
             </div>
           </Link>
         </div>

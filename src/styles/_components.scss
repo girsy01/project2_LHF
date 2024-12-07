@@ -13,12 +13,19 @@ nav {
   }
 
   a img {
-    height: 100%;
+    height: 100%px;
     padding: 5px;
   }
 
   .img-profile img {
     padding: 0;
+  }
+
+  .img-photo {
+    border-radius: 100px;
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
   }
 
   .menu {
@@ -113,7 +120,7 @@ nav {
   }
 
   .details {
-    width: 80%;
+    // width: 80%;
   }
 
   .pos-absolute-right {
@@ -177,9 +184,12 @@ nav {
 .custom-file-input {
   position: relative;
   display: inline-block;
+  width: fit-content;
+  min-width: 130px;
 }
 
 .custom-file-input label {
+  margin: 10px;
   background-color: #007bff;
   color: #fff;
   padding: 0.5rem 1rem;

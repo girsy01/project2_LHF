@@ -69,9 +69,53 @@
   align-items: center;
 
   button {
-    margin-top: 30px;
     width: 15%;
     min-width: 130px;
+  }
+
+  .profileImage {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 1000px;
+    margin-top: 20px;
+  }
+
+  form {
+    margin: 30px 10px;
+    padding: 15px;
+    width: fit-content;
+
+    .file-input {
+      display: none; /* Completely hides the native file input */
+    }
+
+    .file-label {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 15px;
+      margin: 20px 0;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      color: #323232;
+      background-color: vars.$color_2;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    input {
+      display: none;
+    }
+
+    button {
+      margin: 10px;
+      min-width: 130px;
+    }
   }
 }
 // about page
@@ -263,4 +307,12 @@ section {
 
 .textDetails em {
   font-size: 1.5rem;
+}
+//Splash Page
+.splash-page {
+  text-align: center;
+  h2 {
+    color: vars.$color_2;
+    font-size: 1.5rem;
+  }
 }
