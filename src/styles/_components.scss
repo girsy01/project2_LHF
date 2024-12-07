@@ -77,10 +77,10 @@ nav {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
-  width: fit-content;
+  max-width: vars.$wrapper-width;;
   margin: 0 auto;
 }
 
@@ -163,6 +163,28 @@ nav {
     height: 100%;
     width: 100%;
     padding: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr)
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container{
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 100%;
+    
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+    }
   }
 }
 
