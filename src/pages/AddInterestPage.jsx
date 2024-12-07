@@ -92,6 +92,7 @@ const AddInterestPage = () => {
               music: [
                 ...prevMusic,
                 {
+                  id: prevMusic.length + 1,
                   band_name: selectedItem.artists[0].name,
                   album_cover: selectedItem.album.images[0].url,
                 },
@@ -121,6 +122,7 @@ const AddInterestPage = () => {
                 movies: [
                   ...prevMovies,
                   {
+                    id: prevMovies.length + 1,
                     title: selectedItem.original_title,
                     year: Number(selectedItem.release_date.slice(0,4)),
                     cover: "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdmllfGVufDB8fDB8fHww"
@@ -151,6 +153,7 @@ const AddInterestPage = () => {
                   events: [
                     ...prevEvents,
                     {
+                      id: prevEvents.length + 1,
                       event_name: selectedItem.name,
                       event_poster: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bXVzaWN8ZW58MHx8MHx8fDA%3D",
                     },
@@ -168,7 +171,7 @@ const AddInterestPage = () => {
             break;
 
             case "book":
-              if (selectedItem) {
+              if (selectedItem) {                
                 try {
                   const response = await axios.get(
                     `http://localhost:5005/user/${userId}`
@@ -180,14 +183,16 @@ const AddInterestPage = () => {
                     books: [
                       ...prevBooks,
                       {
-                        band_name: selectedItem.artists[0].name,
-                        album_cover: selectedItem.album.images[0].url,
+                        id: prevBooks.length + 1,
+                        book_title: selectedItem.volumeInfo.title,
+                        author: selectedItem.volumeInfo.authors[0],
+                        book_cover: selectedItem.volumeInfo.imageLinks.thumbnail
                       },
                     ],
                   };
           
                   axios.patch(`http://localhost:5005/user/${userId}`, updated);
-                  alert("Music Added Sucessfully!");
+                  alert("Book Added Sucessfully!");
                 } catch {
                   (error) => console.log(error);
                 }
@@ -308,15 +313,6 @@ const AddInterestPage = () => {
                 type="text"
                 name="author"
                 placeholder="Enter author name"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>ISBN</label>
-              <input
-                type="text"
-                name="isbn"
-                placeholder="Enter ISBN (optional)"
                 onChange={handleChange}
               />
             </div>

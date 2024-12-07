@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const ItemCard = ({ category, item }) => {
-  const { userId } = useParams();
+  
 
   let catIcon = "";
   if (category === "book") catIcon = bookSVG;

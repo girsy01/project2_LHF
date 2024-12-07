@@ -37,6 +37,9 @@ const Navbar = () => {
           <NavLink to={`/search`} className={({ isActive }) => getNavLinkClass(isActive, true)}>
             Add Item
           </NavLink>
+          <NavLink to="/community" className={({ isActive }) => getNavLinkClass(isActive, true)}>
+            Community
+          </NavLink>
           <NavLink to="/about" className={({ isActive }) => getNavLinkClass(isActive, false)}>
             About
           </NavLink>

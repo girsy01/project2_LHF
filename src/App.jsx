@@ -10,6 +10,10 @@ import AddInterestPage from "./pages/AddInterestPage";
 import AboutPage from "./pages/AboutPage";
 import ProfilePage from "./pages/ProfilePage";
 import UserMessage from "./components/UserMessage";
+import CommunityPage from "./pages/CommunityPage";
+import CustomFileInput from "./components/CustomFileInput";
+import MovieDetailPage from "./pages/MovieDetailPage";
+import BookDetailPage from "./pages/BookDetailPage";
 
 function App() {
   return (
@@ -22,8 +26,11 @@ function App() {
         {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
         <Route path="/dashboard/:userId" element={<DashboardPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/community" element={<CommunityPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/:userId/moviedetail/:itemId" element={<MovieDetailPage/>} />
+        <Route path="/:userId/bookdetail/:itemId" element={<BookDetailPage/>} />
         <Route path="/uikit" element={<UIKitPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
