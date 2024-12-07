@@ -172,3 +172,25 @@ nav {
   padding: 10px 20px;
   color: vars.$color_8;
 }
+
+// for the custom input
+.custom-file-input {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-file-input label {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.custom-file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}

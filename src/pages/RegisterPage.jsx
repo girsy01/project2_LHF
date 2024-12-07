@@ -8,16 +8,24 @@ const RegisterPage = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const newUser = {
-      user_name: newUsername,
-      password: newPassword,
-      movies: [],
-      books: [],
-      music: [],
-      events: [],
-    };
+    axios.get("http://localhost:5005/user").then((response) => {
 
-    axios.post("http://localhost:5005/user", newUser);
+      const userExists = response.data.some((user) => user.user_name === newUsername)
+      if (userExists) {
+        alert("Username already in use!")     
+      } else {
+        const newUser = {
+          user_name: newUsername,
+          password: newPassword,
+          movies: [],
+          books: [],
+          music: [],
+          events: [],
+        };
+    
+        axios.post("http://localhost:5005/user", newUser);
+      }
+    });
   }
   return (
     <div>
@@ -27,6 +35,7 @@ const RegisterPage = () => {
           <input
             type="text"
             value={newUsername}
+            required
             onChange={(e) => setNewUsername(e.target.value)}
           />
         </label>
@@ -35,10 +44,11 @@ const RegisterPage = () => {
           <input
             type="password"
             value={newPassword}
+            required
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </label>
-        <button>Register</button>
+        <button className="btn-dark">Register</button>
       </form>
     </div>
   );

@@ -67,6 +67,9 @@ const SplashPage = () => {
 
         <button className="btn-dark">Login</button>
       </form>
+      <Link to="/register">
+        <button className="btn-light">Register</button>
+      </Link>
     </div>
   );
 };
