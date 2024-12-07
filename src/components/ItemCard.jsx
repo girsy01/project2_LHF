@@ -37,11 +37,10 @@ const ItemCard = ({ category, item }) => {
   return (
     <div className="card">
       <img src={imgSrc} alt="" />
-      <div className="like pos-absolute-right ">
+      {/* <div className="like pos-absolute-right ">
         <img src={heartSVGnoFill} className="liked" />
-        {/* <img src={heartSVGred} className="liked" /> */}
-      </div>
-      <div className="category-icon pos-absolute-left ">
+      </div> */}
+      <div className="category-icon pos-absolute-right ">
         <img src={catIcon} />
       </div>
 
@@ -50,12 +49,12 @@ const ItemCard = ({ category, item }) => {
           <h2>{titles}</h2>
           <p>{catFirstLetterUpperCase(category)}</p>
         </div>
-        <div className="total-likes">
+        {/* <div className="total-likes">
           <div>10</div>
           <div className="like">
             <img src={heartSVGred} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
