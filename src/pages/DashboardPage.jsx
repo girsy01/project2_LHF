@@ -9,27 +9,14 @@ const DashboardPage = () => {
   // const { userId } = useContext(AuthContext);
   const { userId } = useParams();
   const [currentUser, setCurrentUser] = useState({});
-
   const { categoryFilter, setCategoryFilter } = useContext(FilterContext);
-
-  // JUST FOR NOW UNTIL WE HAVE THE REAL DATA
-  const [myItems, setMyItems] = useState([]);
-  useEffect(() => {
-    setMyItems([
-      { category: "movie" },
-      { category: "book" },
-      { category: "music" },
-      { category: "event" },
-    ]);
-  }, []);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:5005/user").then((response) => {
       const data = response.data;
 
-      const user = data.find(
-        (oneUser) => String(oneUser.id) === String(userId)
-      );
+      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
 
       setCurrentUser(user);
     });
@@ -38,6 +25,22 @@ const DashboardPage = () => {
   function checkCategory(cat) {
     if (categoryFilter === "all" || categoryFilter === cat) return true;
     return false;
+  }
+
+  function searchFilter(item, category) {
+    if (!search) return true;
+
+    let titles = "Untitled";
+    if (item) {
+      if (category === "book") titles = item.book_title;
+      else if (category === "movie") titles = item.title;
+      else if (category === "music") titles = item.band_name;
+      else if (category === "event") titles = item.event_name;
+    }
+
+    console.log(item, category, titles, search);
+
+    return titles.toLowerCase().includes(search.toLowerCase());
   }
 
   return (
@@ -54,36 +57,50 @@ const DashboardPage = () => {
           <IconFilterItem category={"all"} />
         </div>
 
-        <input type="text" placeholder="Search" id="search-bar" />
+        <input
+          type="text"
+          placeholder="Search"
+          id="search-bar"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
         {/* Movies */}
         {currentUser.movies && (
           <div className="card-container">
             {/* <h3>Movies</h3> */}
             {checkCategory("movie") &&
-              currentUser.movies.map((movie) => (
-                <Link to={`/${userId}/moviedetail/${movie.id}`} key={movie.id}>
-                  <ItemCard category="movie" item={movie} itemId={movie.id} />
-                </Link>
-              ))}
+              currentUser.movies
+                .filter((item) => searchFilter(item, "movie"))
+                .map((movie) => (
+                  <Link to={`/${userId}/moviedetail/${movie.id}`} key={movie.id}>
+                    <ItemCard category="movie" item={movie} itemId={movie.id} />
+                  </Link>
+                ))}
             {checkCategory("book") &&
-              currentUser.books.map((book) => (
-                <Link to={`/${userId}/bookdetail/${book.id}`} key={book.id}>
-                  <ItemCard category="book" item={book} itemId={book.id} />
-                </Link>
-              ))}
+              currentUser.books
+                .filter((item) => searchFilter(item, "book"))
+                .map((book) => (
+                  <Link to={`/${userId}/bookdetail/${book.id}`} key={book.id}>
+                    <ItemCard category="book" item={book} itemId={book.id} />
+                  </Link>
+                ))}
             {checkCategory("music") &&
-              currentUser.music.map((music) => (
-                <Link to={`/${userId}/musicdetail/${music.id}`} key={music.id}>
-                  <ItemCard category="music" item={music} />
-                </Link>
-              ))}
+              currentUser.music
+                .filter((item) => searchFilter(item, "music"))
+                .map((music) => (
+                  <Link to={`/${userId}/musicdetail/${music.id}`} key={music.id}>
+                    <ItemCard category="music" item={music} />
+                  </Link>
+                ))}
             {checkCategory("event") &&
-              currentUser.events.map((event) => (
-                <Link to={`/${userId}/eventdetail/${event.id}`} key={event.id}>
-                  <ItemCard category="event" item={event} />
-                </Link>
-              ))}
+              currentUser.events
+                .filter((item) => searchFilter(item, "event"))
+                .map((event) => (
+                  <Link to={`/${userId}/eventdetail/${event.id}`} key={event.id}>
+                    <ItemCard category="event" item={event} />
+                  </Link>
+                ))}
           </div>
         )}
 
