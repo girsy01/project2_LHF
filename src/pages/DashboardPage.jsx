@@ -29,7 +29,7 @@ const DashboardPage = () => {
 
       const user = data.find((oneUser) => String(oneUser.id) === String(userId));
 
-      setCurrentUser(user);      
+      setCurrentUser(user);
     });
   }, [userId]);
 
@@ -52,6 +52,8 @@ const DashboardPage = () => {
           <IconFilterItem category={"all"} />
         </div>
 
+        <input type="text" placeholder="Search" id="search-bar" />
+
         {/* Movies */}
         {currentUser.movies && (
           <div className="card-container">
@@ -59,13 +61,13 @@ const DashboardPage = () => {
             {checkCategory("movie") &&
               currentUser.movies.map((movie) => (
                 <Link to={`/${userId}/moviedetail/${movie.id}`} key={movie.id}>
-                <ItemCard  category="movie" item={movie} itemId={movie.id}/>
+                  <ItemCard category="movie" item={movie} itemId={movie.id} />
                 </Link>
               ))}
             {checkCategory("book") &&
-              currentUser.books.map((book) => (                
+              currentUser.books.map((book) => (
                 <Link to={`/${userId}/bookdetail/${book.id}`} key={book.id}>
-                <ItemCard  category="book" item={book} itemId={book.id}/>
+                  <ItemCard category="book" item={book} itemId={book.id} />
                 </Link>
               ))}
             {checkCategory("music") &&
