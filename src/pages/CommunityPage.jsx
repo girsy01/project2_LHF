@@ -41,9 +41,9 @@ const CommunityPage = () => {
         <div>Loading...</div>
       ) : (
         <div id="users-list">
-          {users.map((user) => (
-            <div key={user.id} className="user-card">
-              <img src={user.image_url} />
+          {users.map(user => (
+            <div key={user.id} className="community-user-card">
+              <img className='community-user-image' src={user.image_url} />
               <h3>{user.user_name}</h3>
             </div>
           ))}

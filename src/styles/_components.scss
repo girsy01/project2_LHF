@@ -4,6 +4,7 @@
 nav {
   background-color: vars.$color_5;
   height: 70px;
+  position: relative;
 
   .wrapper {
     display: flex;
@@ -17,12 +18,26 @@ nav {
     padding: 5px;
   }
 
-  .img-profile img {
-    padding: 0;
+  .img-profile {
+    height: 35px;
+    width: 35px;
+    background-color: vars.$color_5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+    img {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      object-fit: cover;
+    }
   }
 
   .img-photo {
-    border-radius: 100px;
+    border-radius: 50%;
     height: 35px;
     width: 35px;
     object-fit: cover;
@@ -52,15 +67,8 @@ nav {
     text-decoration: underline;
   }
 
-  .img-profile {
-    height: 50%;
-    background-color: vars.$color_5;
-    border-radius: 50px;
-  }
-
   .logged-in {
     background-color: vars.$color_1;
-    // box-shadow: 0 0 10px vars.$color_6;
   }
 
   img {
@@ -70,6 +78,64 @@ nav {
 
   .splash {
     display: none;
+  }
+
+  .burger-menu {
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+    z-index: 100;
+    margin-right: 15px;
+  
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+  
+    &.open {
+      span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+    }
+  
+    .burger-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .mobile-menu {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: vars.$color_5;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      .img-profile {
+        height: 30px;
+        width: 30px;
+        margin: 10px auto;
+      }
+    }
   }
 }
 
