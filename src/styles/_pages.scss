@@ -287,6 +287,32 @@ section {
   }
 }
 
+//Item Details
+
+#itemDetails {
+  display: flex;
+  width: 1300px;
+  margin: 150px;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+#itemDetails img {
+  height: 450px;
+  border-radius: 15px;
+  margin: 25px
+}
+
+.textDetails {
+  margin: 50px;
+  width:850px;
+  text-align: left;
+  justify-content: left;  
+}
+
+.textDetails em {
+  font-size: 1.5rem;
+}
 //Splash Page
 .splash-page {
   text-align: center;

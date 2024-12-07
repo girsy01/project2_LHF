@@ -81,6 +81,7 @@ const AddInterestPage = () => {
     switch(formData.mediaType) {
       case "music":
         if (selectedItem) {
+          console.log(selectedItem)
           try {
             const response = await axios.get(
               `http://localhost:5005/user/${userId}`
@@ -111,6 +112,7 @@ const AddInterestPage = () => {
 
         case "movie":
           if (selectedItem) {
+            console.log(selectedItem)
             try {
               const response = await axios.get(
                 `http://localhost:5005/user/${userId}`
@@ -125,7 +127,8 @@ const AddInterestPage = () => {
                     id: prevMovies.length + 1,
                     title: selectedItem.original_title,
                     year: Number(selectedItem.release_date.slice(0,4)),
-                    cover: "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdmllfGVufDB8fDB8fHww"
+                    cover: "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdmllfGVufDB8fDB8fHww",
+                    overview: selectedItem.overview
                   },
                 ],
               };
@@ -142,6 +145,7 @@ const AddInterestPage = () => {
 
           case "event":
             if (selectedItem) {
+              console.log(selectedItem)
               try {
                 const response = await axios.get(
                   `http://localhost:5005/user/${userId}`
@@ -156,6 +160,7 @@ const AddInterestPage = () => {
                       id: prevEvents.length + 1,
                       event_name: selectedItem.name,
                       event_poster: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bXVzaWN8ZW58MHx8MHx8fDA%3D",
+                      overview: selectedItem.pleaseNote
                     },
                   ],
                 };
@@ -171,7 +176,8 @@ const AddInterestPage = () => {
             break;
 
             case "book":
-              if (selectedItem) {                
+              if (selectedItem) {   
+                console.log(selectedItem)             
                 try {
                   const response = await axios.get(
                     `http://localhost:5005/user/${userId}`
@@ -186,7 +192,8 @@ const AddInterestPage = () => {
                         id: prevBooks.length + 1,
                         book_title: selectedItem.volumeInfo.title,
                         author: selectedItem.volumeInfo.authors[0],
-                        book_cover: selectedItem.volumeInfo.imageLinks.thumbnail
+                        book_cover: selectedItem.volumeInfo.imageLinks.thumbnail,
+                        published_date: selectedItem.volumeInfo.publishedDate
                       },
                     ],
                   };

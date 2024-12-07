@@ -27,7 +27,9 @@ const DashboardPage = () => {
     axios.get("http://localhost:5005/user").then((response) => {
       const data = response.data;
 
-      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
+      const user = data.find(
+        (oneUser) => String(oneUser.id) === String(userId)
+      );
 
       setCurrentUser(user);
     });
@@ -71,12 +73,16 @@ const DashboardPage = () => {
                 </Link>
               ))}
             {checkCategory("music") &&
-              currentUser.music.map((music, id) => (
-                <ItemCard key={id} category="music" item={music} />
+              currentUser.music.map((music) => (
+                <Link to={`/${userId}/musicdetail/${music.id}`} key={music.id}>
+                  <ItemCard category="music" item={music} />
+                </Link>
               ))}
             {checkCategory("event") &&
-              currentUser.events.map((event, id) => (
-                <ItemCard key={id} category="event" item={event} />
+              currentUser.events.map((event) => (
+                <Link to={`/${userId}/eventdetail/${event.id}`} key={event.id}>
+                  <ItemCard category="event" item={event} />
+                </Link>
               ))}
           </div>
         )}

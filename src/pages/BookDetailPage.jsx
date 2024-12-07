@@ -5,7 +5,7 @@ const BookDetailPage = () => {
   const { userId, itemId } = useParams();
 
   const [currentItem, setCurrentItem] = useState({});
-  console.log(itemId);
+  
   useEffect(() => {
     axios.get("http://localhost:5005/user").then((response) => {
       const data = response.data;
@@ -20,11 +20,12 @@ const BookDetailPage = () => {
   }, [userId, itemId]);
 
   return (
-    <div>
+    <div id="itemDetails">
       <img src={currentItem.book_cover} />
-      <div>
+      <div className="textDetails">
         <h1>{currentItem.book_title}</h1>
-        <p>{currentItem.description}</p>
+        <h2>Published in : {currentItem.published_date}</h2>
+        <p><em>Summary :</em> {currentItem.summary}</p>
       </div>
     </div>
   );

@@ -14,6 +14,8 @@ import CommunityPage from "./pages/CommunityPage";
 import CustomFileInput from "./components/CustomFileInput";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import BookDetailPage from "./pages/BookDetailPage";
+import MusicDetailPage from "./pages/MusicDetailPage";
+import EventDetailPage from "./pages/EventDetailPage";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/:userId/moviedetail/:itemId" element={<MovieDetailPage/>} />
         <Route path="/:userId/bookdetail/:itemId" element={<BookDetailPage/>} />
+        <Route path="/:userId/musicdetail/:itemId" element={<MusicDetailPage/>} />
+        <Route path="/:userId/eventdetail/:itemId" element={<EventDetailPage/>} />
         <Route path="/uikit" element={<UIKitPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
