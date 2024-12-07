@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { MessageContext } from "../contexts/MessageContext";
 import CustomFileInput from "../components/CustomFileInput";
+import { API_URL } from "../config/apiConfig";
 
 const ProfilePage = () => {
   const { userId } = useContext(AuthContext);
@@ -16,7 +17,7 @@ const ProfilePage = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get("http://localhost:5005/user")
+        .get(`${API_URL}/user`)
         .then((response) => {
           const data = response.data;
           const user = data.find((oneUser) => String(oneUser.id) === String(userId));
@@ -31,7 +32,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     axios
-      .patch(`http://localhost:5005/user/${userId}`, { image_url: imageUrl })
+      .patch(`${API_URL}/user/${userId}`, { image_url: imageUrl })
       .then(({ data }) => {
         // console.log("Image added to user");
       })
@@ -52,7 +53,7 @@ const ProfilePage = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if (confirmDelete) {
       axios
-        .delete(`http://localhost:5005/user/${userId}`)
+        .delete(`${API_URL}/user/${userId}`)
         .then(({ data }) => {
           console.log("Delete successful", data);
           setMessage("Profile deleted.");

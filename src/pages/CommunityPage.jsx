@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { API_URL } from "../config/apiConfig";
+import axios from "axios";
 
 const CommunityPage = () => {
   const [users, setUsers] = useState([]);
@@ -9,10 +10,10 @@ const CommunityPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5005/user');
+        const response = await axios.get(`${API_URL}/user`);
         setUsers(response.data);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       } finally {
         setLoading(false);
       }
@@ -40,7 +41,7 @@ const CommunityPage = () => {
         <div>Loading...</div>
       ) : (
         <div id="users-list">
-          {users.map(user => (
+          {users.map((user) => (
             <div key={user.id} className="user-card">
               <img src={user.image_url} />
               <h3>{user.user_name}</h3>

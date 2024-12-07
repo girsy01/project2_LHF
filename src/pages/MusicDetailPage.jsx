@@ -1,43 +1,39 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config/apiConfig";
 
 const MusicDetailPage = () => {
   const { userId, itemId } = useParams();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [currentItem, setCurrentItem] = useState({});
 
   useEffect(() => {
-    axios.get("http://localhost:5005/user").then((response) => {
+    axios.get(`${API_URL}/user`).then((response) => {
       const data = response.data;
-      const user = data.find(
-        (oneUser) => String(oneUser.id) === String(userId)
-      );
-      const item = user.music.find(
-        (oneMusic) => String(oneMusic.id) === String(itemId)
-      );
+      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
+      const item = user.music.find((oneMusic) => String(oneMusic.id) === String(itemId));
       setCurrentItem(item);
     });
   }, [userId, itemId]);
 
   async function handleDelete() {
     try {
-      const response = await axios.get(
-        `http://localhost:5005/user/${userId}`
-      );
+      const response = await axios.get(`${API_URL}/user/${userId}`);
       const prevMusic = response.data.music || [];
 
       const updated = {
         id: `${userId}`,
-        music: prevMusic.filter((music) => String(music.id) !== String(itemId))
-      }
+        music: prevMusic.filter((music) => String(music.id) !== String(itemId)),
+      };
 
-      await axios.patch(`http://localhost:5005/user/${userId}`, updated);
+      await axios.patch(`${API_URL}/user/${userId}`, updated);
       alert("Music Deleted Sucessfully!");
-      navigate(`/dashboard/${userId}`)      
-    } catch (error) {console.log(error)}
+      navigate(`/dashboard/${userId}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
-
 
   return (
     <div id="itemDetails">

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext";
-// import logo from "../assets/logo.png";
+import { API_URL } from "../config/apiConfig";
 
 const SplashPage = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +14,7 @@ const SplashPage = () => {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .get("http://localhost:5005/user")
+      .get(`${API_URL}/user`)
       .then((response) => {
         const users = response.data;
         const foundUser = users.find((user) => user.user_name === username);

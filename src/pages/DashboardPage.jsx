@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import IconFilterItem from "../components/IconFilterItem";
 import { FilterContext } from "../contexts/FilterContext";
+import { API_URL } from "../config/apiConfig";
 
 const DashboardPage = () => {
   // const { userId } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const DashboardPage = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5005/user").then((response) => {
+    axios.get(`${API_URL}/user`).then((response) => {
       const data = response.data;
 
       const user = data.find((oneUser) => String(oneUser.id) === String(userId));

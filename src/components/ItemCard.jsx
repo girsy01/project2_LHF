@@ -4,8 +4,6 @@ import movieSVG from "../assets/movie-svg.svg";
 import bookSVG from "../assets/book-svg.svg";
 import musicSVG from "../assets/music-svg.svg";
 import eventSVG from "../assets/events-svg.svg";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 
 const ItemCard = ({ category, item }) => {
   let catIcon = "";

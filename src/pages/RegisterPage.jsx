@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config/apiConfig";
 
 const RegisterPage = () => {
   const [newUsername, setNewUsername] = useState("");
@@ -8,11 +9,10 @@ const RegisterPage = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.get("http://localhost:5005/user").then((response) => {
-
-      const userExists = response.data.some((user) => user.user_name === newUsername)
+    axios.get(`${API_URL}/user`).then((response) => {
+      const userExists = response.data.some((user) => user.user_name === newUsername);
       if (userExists) {
-        alert("Username already in use!")     
+        alert("Username already in use!");
       } else {
         const newUser = {
           user_name: newUsername,
@@ -22,8 +22,8 @@ const RegisterPage = () => {
           music: [],
           events: [],
         };
-    
-        axios.post("http://localhost:5005/user", newUser);
+
+        axios.post(`${API_URL}/user`, newUser);
       }
     });
   }
