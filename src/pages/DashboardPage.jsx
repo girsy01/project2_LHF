@@ -48,11 +48,11 @@ const DashboardPage = () => {
         <h2>Your unique gallery of favorites.</h2>
 
         <div className="icons-container">
+          <IconFilterItem category={"all"} />
           <IconFilterItem category={"movie"} />
           <IconFilterItem category={"book"} />
           <IconFilterItem category={"music"} />
           <IconFilterItem category={"event"} />
-          <IconFilterItem category={"all"} />
         </div>
 
         <input
