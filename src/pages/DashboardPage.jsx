@@ -38,8 +38,6 @@ const DashboardPage = () => {
       else if (category === "event") titles = item.event_name;
     }
 
-    console.log(item, category, titles, search);
-
     return titles.toLowerCase().includes(search.toLowerCase());
   }
 
