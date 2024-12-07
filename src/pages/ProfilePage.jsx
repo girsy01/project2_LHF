@@ -21,13 +21,24 @@ const ProfilePage = () => {
           const data = response.data;
           const user = data.find((oneUser) => String(oneUser.id) === String(userId));
           setCurrentUser(user || {}); // Fallback to an empty object if no user is found
-          setImageUrl(user.image_url);
+          user.image_url && setImageUrl(user.image_url);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
         });
     }
   }, [userId]);
+
+  useEffect(() => {
+    axios
+      .patch(`http://localhost:5005/user/${userId}`, { image_url: imageUrl })
+      .then(({ data }) => {
+        // console.log("Image added to user");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [imageUrl]);
 
   function handleLogout() {
     setLoggedIn(false);
@@ -71,17 +82,6 @@ const ProfilePage = () => {
       })
       .catch((err) => console.log(err));
   }
-
-  useEffect(() => {
-    axios
-      .patch(`http://localhost:5005/user/${userId}`, { image_url: imageUrl })
-      .then(({ data }) => {
-        // console.log("Image added to user");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [imageUrl]);
 
   return (
     <div className="wrapper profilePage">
