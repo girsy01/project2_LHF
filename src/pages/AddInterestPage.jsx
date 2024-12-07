@@ -96,7 +96,7 @@ const AddInterestPage = () => {
                   id: prevMusic.length + 1,
                   band_name: selectedItem.artists[0].name,
                   album_cover: selectedItem.album.images[0].url,
-                  release_date: selectedItem.release_date.slice(0,4),
+                  release_date: selectedItem.album.release_date.slice(0,4),
                   overview: selectedItem.overview || ""
                 },
               ],
@@ -104,6 +104,7 @@ const AddInterestPage = () => {
     
             axios.patch(`http://localhost:5005/user/${userId}`, updated);
             alert("Music Added Sucessfully!");
+            navigate(`/dashboard/${userId}`)
           } catch {
             (error) => console.log(error);
           }
@@ -137,6 +138,7 @@ const AddInterestPage = () => {
       
               axios.patch(`http://localhost:5005/user/${userId}`, updated);
               alert("Movie Added Sucessfully!");
+              navigate(`/dashboard/${userId}`)
             } catch {
               (error) => console.log(error);
             }
@@ -169,6 +171,7 @@ const AddInterestPage = () => {
         
                 axios.patch(`http://localhost:5005/user/${userId}`, updated);
                 alert("Event Added Sucessfully!");
+                navigate(`/dashboard/${userId}`)
               } catch {
                 (error) => console.log(error);
               }
@@ -202,6 +205,7 @@ const AddInterestPage = () => {
           
                   axios.patch(`http://localhost:5005/user/${userId}`, updated);
                   alert("Book Added Sucessfully!");
+                  navigate(`/dashboard/${userId}`)
                 } catch {
                   (error) => console.log(error);
                 }
