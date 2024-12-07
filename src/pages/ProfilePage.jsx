@@ -44,6 +44,7 @@ const ProfilePage = () => {
   function handleLogout() {
     setLoggedIn(false);
     setUserId(null);
+    setImageUrl("");
     localStorage.removeItem("loggedIn");
     localStorage.removeItem("userId");
     navigate("/");
