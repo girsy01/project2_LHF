@@ -21,15 +21,25 @@ const ItemCard = ({ category, item }) => {
   }
 
   let titles = "Untitled";
+  let secondInfo = "";
   if (item) {
-    if (category === "book") titles = item.book_title;
-    else if (category === "movie") titles = item.title;
-    else if (category === "music") titles = item.band_name;
-    else if (category === "event") titles = item.event_name;
+    if (category === "book") {
+      titles = item.book_title;
+      secondInfo = item.author;
+    } else if (category === "movie") {
+      titles = item.title;
+      secondInfo = item.year;
+    } else if (category === "music") {
+      titles = item.band_name;
+      secondInfo = item.band_name;
+    } else if (category === "event") {
+      titles = item.event_name;
+      // secondInfo = item.year;
+    }
   }
 
-  function catFirstLetterUpperCase(c) {
-    return c[0].toUpperCase() + c.slice(1);
+  function catFirstLetterUpperCase() {
+    return category[0].toUpperCase() + category.slice(1);
   }
 
   return (
@@ -45,7 +55,8 @@ const ItemCard = ({ category, item }) => {
       <div className="card-infos">
         <div className="details">
           <h2>{titles}</h2>
-          <p>{catFirstLetterUpperCase(category)}</p>
+          <p>{secondInfo}</p>
+          {/* <p>{catFirstLetterUpperCase()}</p> */}
         </div>
         {/* <div className="total-likes">
           <div>10</div>
