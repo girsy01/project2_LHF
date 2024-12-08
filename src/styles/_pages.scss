@@ -31,7 +31,7 @@
 
       &:hover {
         transform: scale(1.05);
-        box-shadow: 0 0 10px vars.$color_3;
+        box-shadow: 0 0 10px vars.$color_1;
       }
 
       img {
@@ -39,7 +39,7 @@
       }
     }
     .active {
-      box-shadow: 0 0 10px vars.$color_3;
+      box-shadow: 0 0 10px vars.$color_1;
       background-color: rgba(vars.$color_6, 0.2);
     }
   }
@@ -335,44 +335,43 @@ section {
     font-size: 1.5rem;
   }
 }
-// Community Page
 
+// Community Page
 .community-user-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px;
 }
+
 .community-user-image {
-  width: 200px;
-  height: 200px;
+  position: relative;
+  width: 30vw;
+  height: 30vw;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 300px;
+  max-height: 300px;
   border-radius: 50%;
   border: 2px solid vars.$color_2;
-  position: relative;
   overflow: hidden;
-  
-  // Container shadow
-  box-shadow: 
-    0 1px 2px rgba(vars.$color_2, 0.2),
-    0 2px 4px rgba(vars.$color_2, 0.2),
-    0 4px 8px rgba(vars.$color_2, 0.2),
-    0 8px 16px rgba(vars.$color_2, 0.15),
+  object-fit: cover;
+
+  box-shadow: 0 1px 2px rgba(vars.$color_2, 0.2), 0 2px 4px rgba(vars.$color_2, 0.2),
+    0 4px 8px rgba(vars.$color_2, 0.2), 0 8px 16px rgba(vars.$color_2, 0.15),
     0 16px 32px rgba(vars.$color_2, 0.15);
-  
+
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     object-position: center;
   }
-}
 
-.community-user-image:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 2px 4px rgba(vars.$color_2, 0.25),
-    0 4px 8px rgba(vars.$color_2, 0.25),
-    0 8px 16px rgba(vars.$color_2, 0.25),
-    0 16px 32px rgba(vars.$color_2, 0.2),
-    0 32px 64px rgba(vars.$color_2, 0.2);
-  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(vars.$color_2, 0.25), 0 4px 8px rgba(vars.$color_2, 0.25),
+      0 8px 16px rgba(vars.$color_2, 0.25), 0 16px 32px rgba(vars.$color_2, 0.2),
+      0 32px 64px rgba(vars.$color_2, 0.2);
+    transition: all 0.3s ease;
+  }
 }
