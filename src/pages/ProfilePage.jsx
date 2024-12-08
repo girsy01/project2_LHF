@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const [currentUser, setCurrentUser] = useState(null); // Initialize with null
   const navigate = useNavigate();
   const { loggedIn, setLoggedIn, setUserId, imageUrl, setImageUrl } = useContext(AuthContext);
-  const { setMessage, setShowDeleteMessage } = useContext(MessageContext);
+  const { showSuccessMessage } = useContext(MessageContext);
   const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
@@ -57,12 +57,7 @@ const ProfilePage = () => {
         .delete(`${API_URL}/user/${userId}`)
         .then(({ data }) => {
           console.log("Delete successful", data);
-          setMessage("Profile deleted.");
-          setShowDeleteMessage(true);
-          setTimeout(() => {
-            setMessage("");
-            setShowDeleteMessage(false);
-          }, 3000);
+          showSuccessMessage("delete user", userId);
           handleLogout();
         })
         .catch((error) => {

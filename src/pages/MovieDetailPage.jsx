@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_URL } from "../config/apiConfig";
+import { MessageContext } from "../contexts/MessageContext";
 
 const MovieDetailPage = () => {
   const { userId, itemId } = useParams();
   const navigate = useNavigate();
   const [currentItem, setCurrentItem] = useState({});
   const [note, setNote] = useState("");
+  const { showSuccessMessage } = useContext(MessageContext);
 
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
@@ -60,7 +62,8 @@ const MovieDetailPage = () => {
       };
 
       await axios.patch(`${API_URL}/user/${userId}`, updated);
-      alert("Movie Deleted Sucessfully!");
+      // alert("Movie Deleted Sucessfully!");
+      showSuccessMessage("delete", userId);
       navigate(`/dashboard/${userId}`);
     } catch (error) {
       console.log(error);

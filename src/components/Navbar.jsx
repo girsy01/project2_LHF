@@ -16,7 +16,7 @@ const Navbar = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    checkScreenSize(); // Initial check
+    checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
 
     return () => window.removeEventListener('resize', checkScreenSize);
@@ -35,32 +35,28 @@ const Navbar = () => {
       <NavLink
         to={`/dashboard/${userId}`}
         className={({ isActive }) => getNavLinkClass(isActive, true)}
-        onClick={() => setIsMenuOpen(false)}
       >
         Dashboard
       </NavLink>
       <NavLink 
         to={`/search`} 
         className={({ isActive }) => getNavLinkClass(isActive, true)}
-        onClick={() => setIsMenuOpen(false)}
       >
         Add Item
       </NavLink>
       <NavLink 
         to="/community" 
         className={({ isActive }) => getNavLinkClass(isActive, true)}
-        onClick={() => setIsMenuOpen(false)}
       >
         Community
       </NavLink>
       <NavLink 
         to="/about" 
         className={({ isActive }) => getNavLinkClass(isActive, false)}
-        onClick={() => setIsMenuOpen(false)}
       >
         About
       </NavLink>
-      <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
+      <Link to="/profile">
         <div className={`img-profile ${loggedIn && "logged-in"}`}>
           <img
             src={imageUrl ? imageUrl : userImage}
