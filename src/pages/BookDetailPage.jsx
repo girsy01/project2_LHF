@@ -7,6 +7,7 @@ const BookDetailPage = () => {
   const { userId, itemId } = useParams();
   const navigate = useNavigate();
   const [currentItem, setCurrentItem] = useState({});
+  const [note, setNote] = useState("");
 
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
@@ -16,6 +17,31 @@ const BookDetailPage = () => {
       setCurrentItem(item);
     });
   }, [userId, itemId]);
+
+  async function handleAddNote(e) {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${API_URL}/user/${userId}`);
+
+      const prevBooks = response.data.books || [];
+      const updatedBooks = prevBooks.map((book) =>
+        book.id === currentItem.id
+          ? { ...book, notes: note }
+          : book
+      );
+
+      const updated = {
+        id: `${userId}`,
+        books: updatedBooks,
+      };
+
+      await axios.patch(`${API_URL}/user/${userId}`, updated);
+      alert("Note Added Sucessfully!");
+      window.location.reload()
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function handleDelete() {
     try {
@@ -44,6 +70,17 @@ const BookDetailPage = () => {
         <p>
           <em>Summary :</em> {currentItem.summary}
         </p>
+        <p>
+          <em>Note:</em> {currentItem.notes || "No notes added"}
+        </p>
+        <form onSubmit={handleAddNote}>
+          <input
+            type="text"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          <button className="btn-light">Add Note</button>
+        </form>
         <button onClick={handleDelete}>Delete Item</button>
       </div>
     </div>
