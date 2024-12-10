@@ -397,6 +397,10 @@ section {
 @media (max-width: 768px) {
   #users-list {
     grid-template-columns: 1fr;
+    max-height: 600px;
+    overflow-x: hidden;
+    gap: 0px;
+    padding-inline: 0;
   }
 }
 
@@ -409,8 +413,8 @@ section {
 
 .community-user-image {
   position: relative;
-  width: 20vw;
-  height: 20vw;
+  width: 40vw;
+  height: 40vw;
   min-width: 150px;
   min-height: 150px;
   max-width: 300px;
