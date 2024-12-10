@@ -210,6 +210,7 @@ const AddInterestPage = () => {
   }
 
   return (
+    <div className="addinterestpage">
     <div className="form-container">
       <h1>Add a new interest</h1>
 
@@ -414,6 +415,7 @@ const AddInterestPage = () => {
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 };
