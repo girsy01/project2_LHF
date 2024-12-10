@@ -12,12 +12,14 @@ const ItemCard = ({ category, item }) => {
   else if (category === "event") catIcon = eventSVG;
   else catIcon = musicSVG;
 
-  let imgSrc = "../assets/logo.png";
+  let imgSrc = "";
   if (item) {
-    if (category === "book") imgSrc = item.book_cover;
-    else if (category === "movie") imgSrc = item.cover;
-    else if (category === "music") imgSrc = item.album_cover;
-    else if (category === "event") imgSrc = item.event_cover;
+    if (category === "book") imgSrc = item.book_cover || "/placeholder-book.jpg";
+    else if (category === "movie") imgSrc = item.cover || "/placeholder-movie.jpg";
+    else if (category === "music") imgSrc = item.album_cover || "/placeholder-music.jpg";
+    else if (category === "event") imgSrc = item.event_cover || "/placeholder-event.jpg";
+  } else {
+    imgSrc = "/placeholder.jpg";
   }
 
   let titles = "Untitled";
@@ -31,10 +33,10 @@ const ItemCard = ({ category, item }) => {
       secondInfo = item.year;
     } else if (category === "music") {
       titles = item.band_name;
-      secondInfo = item.band_name;
+      secondInfo = item.release_date;
     } else if (category === "event") {
       titles = item.event_name;
-      // secondInfo = item.year;
+      secondInfo = item.event_date;
     }
   }
 
@@ -44,7 +46,7 @@ const ItemCard = ({ category, item }) => {
 
   return (
     <div className="card">
-      <img src={imgSrc} alt="" />
+      <img src={imgSrc} alt={titles} />
       {/* <div className="like pos-absolute-right ">
         <img src={heartSVGnoFill} className="liked" />
       </div> */}
@@ -68,4 +70,5 @@ const ItemCard = ({ category, item }) => {
     </div>
   );
 };
+
 export default ItemCard;

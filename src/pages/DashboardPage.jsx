@@ -16,6 +16,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
+      console.log("Response data:", response.data);
       const data = response.data;
 
       const user = data.find((oneUser) => String(oneUser.id) === String(userId));
