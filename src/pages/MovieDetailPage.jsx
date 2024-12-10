@@ -43,7 +43,7 @@ const MovieDetailPage = () => {
 
       await axios.patch(`${API_URL}/user/${userId}`, updated);
       alert("Note Added Sucessfully!");
-      navigate(`/dashboard/${userId}/moviedetail/${itemId}`)
+      window.location.reload()
     } catch (error) {
       console.log(error);
     }
