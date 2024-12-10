@@ -12,6 +12,13 @@ body {
   font-family: Poppins;
   font-size: 16px;
   margin-bottom: 50px;
+  min-height: 100vh;
+  background-color: vars.$color_8;
+  background-image: 
+    radial-gradient(vars.$color_7 1px, transparent 1px),
+    radial-gradient(vars.$color_7 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
 }
 
 h1 {
