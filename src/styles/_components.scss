@@ -4,7 +4,12 @@
 nav {
   background-color: vars.$color_5;
   height: 70px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
 
   .wrapper {
     display: flex;
@@ -122,7 +127,7 @@ nav {
     }
 
     .mobile-menu {
-      position: absolute;
+      position: fixed;
       top: 70px;
       left: 0;
       width: 100%;
@@ -305,4 +310,14 @@ nav {
   top: 0;
   opacity: 0;
   cursor: pointer;
+}
+
+// cat icon responsive change for filter icons
+  #cat-icon {
+    width: 10vw;
+    height: 7vh;
+  }
+
+body {
+  padding-top: 70px;
 }

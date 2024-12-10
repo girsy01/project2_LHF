@@ -16,7 +16,7 @@ const IconFilterItem = ({ category }) => {
 
   return (
     <div
-      className={`category-icon ${categoryFilter === category ? "active" : ""}`}
+      id="cat-icon" className={`category-icon ${categoryFilter === category ? "active" : ""}`}
       onClick={() => setCategoryFilter(category)}
     >
       {svgPath.length ? <img src={svgPath} /> : <div className="">ALL</div>}

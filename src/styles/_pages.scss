@@ -337,6 +337,22 @@ section {
 }
 
 // Community Page
+
+#users-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  max-width: vars.$wrapper-width;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  #users-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 .community-user-card {
   display: flex;
   flex-direction: column;
