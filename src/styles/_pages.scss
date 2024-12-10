@@ -1,6 +1,8 @@
 @use "./variables" as vars;
 
 //Dashboard Page
+
+
 .dashboardPage {
   h2 {
     margin-top: 0;
@@ -359,10 +361,37 @@ section {
 #users-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 20px;
   padding: 20px;
   max-width: vars.$wrapper-width;
   margin: 0 auto;
+  max-height: 377.66px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  padding-right: 10px;
+  padding-inline: 80px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .community-user-card {
+    scroll-snap-align: start;
+  }
 }
 
 @media (max-width: 768px) {
@@ -380,8 +409,8 @@ section {
 
 .community-user-image {
   position: relative;
-  width: 30vw;
-  height: 30vw;
+  width: 20vw;
+  height: 20vw;
   min-width: 150px;
   min-height: 150px;
   max-width: 300px;
@@ -398,7 +427,6 @@ section {
   }
 
   &:hover {
-    transform: translateY(-2px);
     box-shadow: 0 2px 4px rgba(vars.$color_2, 0.25), 0 4px 8px rgba(vars.$color_2, 0.25),
       0 8px 16px rgba(vars.$color_2, 0.25), 0 16px 32px rgba(vars.$color_2, 0.2),
       0 32px 64px rgba(vars.$color_2, 0.2);

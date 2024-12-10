@@ -45,7 +45,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="dashboardPage">
+    <div id="dashboardPage" className="dashboardPage">
       <div className="wrapper">
         <h1>Exhibitly</h1>
         <h2>Your unique gallery of favorites.</h2>
