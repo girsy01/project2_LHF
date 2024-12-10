@@ -7,6 +7,14 @@
     // margin-bottom: 60px;
   }
 
+  .btn-light {
+    position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  }
+
   .icons-container {
     display: flex;
     justify-content: center;
