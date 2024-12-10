@@ -24,30 +24,30 @@ const MovieDetailPage = () => {
     });
   }, [userId, itemId]);
 
-  // async function handleAddNote(e) {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.get(`${API_URL}/user/${userId}`);
+  async function handleAddNote(e) {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${API_URL}/user/${userId}`);
 
-  //     const prevMovies = response.data.movies || [];
-  //     const updatedMovies = prevMovies.map((movie) =>
-  //       movie.id === currentItem.id
-  //         ? { ...movie, notes: note }
-  //         : movie
-  //     );
+      const prevMovies = response.data.movies || [];
+      const updatedMovies = prevMovies.map((movie) =>
+        movie.id === currentItem.id
+          ? { ...movie, notes: note }
+          : movie
+      );
 
-  //     const updated = {
-  //       id: `${userId}`,
-  //       movies: updatedMovies,
-  //     };
+      const updated = {
+        id: `${userId}`,
+        movies: updatedMovies,
+      };
 
-  //     await axios.patch(`${API_URL}/user/${userId}`, updated);
-  //     alert("Note Added Sucessfully!");
-  //     window.location.reload()
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+      await axios.patch(`${API_URL}/user/${userId}`, updated);
+      alert("Note Added Sucessfully!");
+      navigate(`/dashboard/${userId}/moviedetail/${itemId}`)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function handleDelete() {
     try {
@@ -79,7 +79,7 @@ const MovieDetailPage = () => {
         <p>
           <em>Synopsis:</em> {currentItem.overview}
         </p>
-        {/* <p>
+        <p>
           <em>Note:</em> {currentItem.notes || "No notes added"}
         </p>
         <form onSubmit={handleAddNote}>
@@ -89,7 +89,7 @@ const MovieDetailPage = () => {
             onChange={(e) => setNote(e.target.value)}
           />
           <button className="btn-light">Add Note</button>
-        </form> */}
+        </form>
         <button onClick={handleDelete}>Delete Item</button>
       </div>
     </div>
