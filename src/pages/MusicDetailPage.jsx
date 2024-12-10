@@ -7,17 +7,45 @@ import { MessageContext } from "../contexts/MessageContext";
 const MusicDetailPage = () => {
   const { userId, itemId } = useParams();
   const navigate = useNavigate();
+  const [note, setNote] = useState("");
   const [currentItem, setCurrentItem] = useState({});
   const { showSuccessMessage } = useContext(MessageContext);
 
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
       const data = response.data;
-      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
-      const item = user.music.find((oneMusic) => String(oneMusic.id) === String(itemId));
+      const user = data.find(
+        (oneUser) => String(oneUser.id) === String(userId)
+      );
+      const item = user.music.find(
+        (oneMusic) => String(oneMusic.id) === String(itemId)
+      );
       setCurrentItem(item);
     });
   }, [userId, itemId]);
+
+  async function handleAddNote(e) {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${API_URL}/user/${userId}`);
+
+      const prevMusic = response.data.music || [];
+      const updatedMusic = prevMusic.map((music) =>
+        music.id === currentItem.id ? { ...music, notes: note } : music
+      );
+
+      const updated = {
+        id: `${userId}`,
+        music: updatedMusic,
+      };
+
+      await axios.patch(`${API_URL}/user/${userId}`, updated);
+      alert("Note Added Sucessfully!");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function handleDelete() {
     try {
@@ -45,6 +73,17 @@ const MusicDetailPage = () => {
         <h1>{currentItem.band_name}</h1>
         <h2>Released in: {currentItem.release_date}</h2>
         <p>{currentItem.overview}</p>
+        <p>
+          <em>Note:</em> {currentItem.notes || "No notes added"}
+        </p>
+        <form onSubmit={handleAddNote}>
+          <input
+            type="text"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          <button className="btn-light">Add Note</button>
+        </form>
         <button onClick={handleDelete}>Delete Item</button>
       </div>
     </div>

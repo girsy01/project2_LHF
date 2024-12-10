@@ -8,16 +8,44 @@ const EventDetailPage = () => {
   const { userId, itemId } = useParams();
   const navigate = useNavigate();
   const [currentItem, setCurrentItem] = useState({});
+  const [note, setNote] = useState("")
   const { showSuccessMessage } = useContext(MessageContext);
 
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
       const data = response.data;
-      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
-      const item = user.events.find((oneEvent) => String(oneEvent.id) === String(itemId));
+      const user = data.find(
+        (oneUser) => String(oneUser.id) === String(userId)
+      );
+      const item = user.events.find(
+        (oneEvent) => String(oneEvent.id) === String(itemId)
+      );
       setCurrentItem(item);
     });
   }, [userId, itemId]);
+
+  async function handleAddNote(e) {
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${API_URL}/user/${userId}`);
+
+      const prevEvents = response.data.events || [];
+      const updatedEvents = prevEvents.map((event) =>
+        event.id === currentItem.id ? { ...event, notes: note } : event
+      );
+
+      const updated = {
+        id: `${userId}`,
+        events: updatedEvents,
+      };
+
+      await axios.patch(`${API_URL}/user/${userId}`, updated);
+      alert("Note Added Sucessfully!");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function handleDelete() {
     try {
@@ -26,7 +54,9 @@ const EventDetailPage = () => {
 
       const updated = {
         id: `${userId}`,
-        events: prevEvents.filter((event) => String(event.id) !== String(itemId)),
+        events: prevEvents.filter(
+          (event) => String(event.id) !== String(itemId)
+        ),
       };
 
       await axios.patch(`${API_URL}/user/${userId}`, updated);
@@ -44,6 +74,17 @@ const EventDetailPage = () => {
       <div className="textDetails">
         <h1>{currentItem.event_name}</h1>
         <p>{currentItem.overview}</p>
+        <p>
+          <em>Note:</em> {currentItem.notes || "No notes added"}
+        </p>
+        <form onSubmit={handleAddNote}>
+          <input
+            type="text"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          <button className="btn-light">Add Note</button>
+        </form>
         <button onClick={handleDelete}>Delete Item</button>
       </div>
     </div>
