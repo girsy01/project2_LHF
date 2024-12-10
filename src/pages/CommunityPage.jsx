@@ -29,7 +29,7 @@ const CommunityPage = () => {
   return (
     <div id="community-container">
       <h1>Community</h1>
-      <h2>Discover other users' collections</h2>
+      <h2>A collection of all our wonderful users.</h2>
 
       {/* <CustomFileInput
         className="my-custom-file-input"
