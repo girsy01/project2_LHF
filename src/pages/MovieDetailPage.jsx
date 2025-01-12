@@ -14,12 +14,8 @@ const MovieDetailPage = () => {
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
       const data = response.data;
-      const user = data.find(
-        (oneUser) => String(oneUser.id) === String(userId)
-      );
-      const item = user.movies.find(
-        (oneMovie) => String(oneMovie.id) === String(itemId)
-      );
+      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
+      const item = user.movies.find((oneMovie) => String(oneMovie.id) === String(itemId));
       setCurrentItem(item);
     });
   }, [userId, itemId]);
@@ -31,9 +27,7 @@ const MovieDetailPage = () => {
 
       const prevMovies = response.data.movies || [];
       const updatedMovies = prevMovies.map((movie) =>
-        movie.id === currentItem.id
-          ? { ...movie, notes: note }
-          : movie
+        movie.id === currentItem.id ? { ...movie, notes: note } : movie
       );
 
       const updated = {
@@ -56,9 +50,7 @@ const MovieDetailPage = () => {
 
       const updated = {
         id: `${userId}`,
-        movies: prevMovies.filter(
-          (movie) => String(movie.id) !== String(itemId)
-        ),
+        movies: prevMovies.filter((movie) => String(movie.id) !== String(itemId)),
       };
 
       await axios.patch(`${API_URL}/user/${userId}`, updated);
@@ -71,26 +63,29 @@ const MovieDetailPage = () => {
   }
 
   return (
-    <div id="itemDetails">
-      <img src={currentItem.cover} />
-      <div className="textDetails">
-        <h1>{currentItem.title}</h1>
-        <h2>Year: {currentItem.year}</h2>
-        <p>
-          <em>Synopsis:</em> {currentItem.overview}
-        </p>
-        <p>
-          <em>Note:</em> {currentItem.notes || "No notes added"}
-        </p>
-        <form onSubmit={handleAddNote}>
-          <input
-            type="text"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-          <button className="btn-light">Add Note</button>
-        </form>
-        <button onClick={handleDelete}>Delete Item</button>
+    <div className="wrapper">
+      <div id="itemDetails">
+        <div className="textDetails">
+          <h1>{currentItem.title}</h1>
+          <p>Year: {currentItem.year}</p>
+          <img src={currentItem.cover} />
+          {currentItem.overview && (
+            <>
+              <h3>Synopsis:</h3>
+              <p>{currentItem.overview}</p>
+            </>
+          )}
+
+          <h3>Notes:</h3>
+
+          <p>{currentItem.notes || "No notes added"}</p>
+
+          <form onSubmit={handleAddNote}>
+            <input type="text" value={note} onChange={(e) => setNote(e.target.value)} />
+            <button className="btn-dark">Add Note</button>
+          </form>
+          <button onClick={handleDelete}>Delete Item</button>
+        </div>
       </div>
     </div>
   );

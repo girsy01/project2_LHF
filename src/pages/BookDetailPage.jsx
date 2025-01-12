@@ -27,9 +27,7 @@ const BookDetailPage = () => {
 
       const prevBooks = response.data.books || [];
       const updatedBooks = prevBooks.map((book) =>
-        book.id === currentItem.id
-          ? { ...book, notes: note }
-          : book
+        book.id === currentItem.id ? { ...book, notes: note } : book
       );
 
       const updated = {
@@ -39,7 +37,7 @@ const BookDetailPage = () => {
 
       await axios.patch(`${API_URL}/user/${userId}`, updated);
       alert("Note Added Sucessfully!");
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -65,26 +63,30 @@ const BookDetailPage = () => {
   }
 
   return (
-    <div id="itemDetails">
-      <img src={currentItem.book_cover} />
-      <div className="textDetails">
-        <h1>{currentItem.book_title}</h1>
-        <h2>Published in : {currentItem.published_date}</h2>
-        <p>
-          <em>Summary :</em> {currentItem.summary}
-        </p>
-        <p>
-          <em>Note:</em> {currentItem.notes || "No notes added"}
-        </p>
-        <form onSubmit={handleAddNote}>
-          <input
-            type="text"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-          <button className="btn-light">Add Note</button>
-        </form>
-        <button onClick={handleDelete}>Delete Item</button>
+    <div className="wrapper">
+      <div id="itemDetails">
+        <div className="textDetails">
+          <h1>{currentItem.book_title}</h1>
+          <p>Published in : {currentItem.published_date}</p>
+          <img src={currentItem.book_cover} />
+
+          {currentItem.summary && (
+            <>
+              <h3>Summary :</h3>
+              <p>{currentItem.summary}</p>
+            </>
+          )}
+
+          <h3>Notes:</h3>
+
+          <p>{currentItem.notes || "No notes added"}</p>
+
+          <form onSubmit={handleAddNote}>
+            <input type="text" value={note} onChange={(e) => setNote(e.target.value)} />
+            <button className="btn-dark">Add Note</button>
+          </form>
+          <button onClick={handleDelete}>Delete Item</button>
+        </div>
       </div>
     </div>
   );

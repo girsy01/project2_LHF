@@ -14,12 +14,8 @@ const MusicDetailPage = () => {
   useEffect(() => {
     axios.get(`${API_URL}/user`).then((response) => {
       const data = response.data;
-      const user = data.find(
-        (oneUser) => String(oneUser.id) === String(userId)
-      );
-      const item = user.music.find(
-        (oneMusic) => String(oneMusic.id) === String(itemId)
-      );
+      const user = data.find((oneUser) => String(oneUser.id) === String(userId));
+      const item = user.music.find((oneMusic) => String(oneMusic.id) === String(itemId));
       setCurrentItem(item);
     });
   }, [userId, itemId]);
@@ -67,24 +63,21 @@ const MusicDetailPage = () => {
   }
 
   return (
-    <div id="itemDetails">
-      <img src={currentItem.album_cover} />
-      <div className="textDetails">
-        <h1>{currentItem.band_name}</h1>
-        <h2>Released in: {currentItem.release_date}</h2>
-        <p>{currentItem.overview}</p>
-        <p>
-          <em>Note:</em> {currentItem.notes || "No notes added"}
-        </p>
-        <form onSubmit={handleAddNote}>
-          <input
-            type="text"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-          <button className="btn-light">Add Note</button>
-        </form>
-        <button onClick={handleDelete}>Delete Item</button>
+    <div className="wrapper">
+      <div id="itemDetails">
+        <div className="textDetails">
+          <h1>{currentItem.band_name}</h1>
+          <p>Released in: {currentItem.release_date}</p>
+          <img src={currentItem.album_cover} />
+          <p>{currentItem.overview}</p>
+          <h3>Notes:</h3>
+          <p>{currentItem.notes || "No notes added"}</p>
+          <form onSubmit={handleAddNote}>
+            <input type="text" value={note} onChange={(e) => setNote(e.target.value)} />
+            <button className="btn-dark">Add Note</button>
+          </form>
+          <button onClick={handleDelete}>Delete Item</button>
+        </div>
       </div>
     </div>
   );
