@@ -24,6 +24,13 @@ Welcome to the **Exhibitly Frontend Repository**, the React-powered user interfa
 
 ---
 
+## Warnings
+
+- **Do not use real passwords!** The login system in this backend is purely a mock implementation for demonstration purposes. Passwords are stored in plain text and are visible in the `db.json` file.
+- The backend behind this app is not intended for production use and should only be used for development and educational purposes.
+
+---
+
 ## Project Structure
 
 ```plaintext
