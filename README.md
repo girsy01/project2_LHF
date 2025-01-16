@@ -59,8 +59,9 @@ root/
 
 ## Deployment
 
-The frontend is hosted on Netlify and accessible to the public. Visit the app here:  
-**[Exhibitly](https://exhibitly.netlify.app)**
+The frontend is hosted on Netlify and accessible to the public. 
+
+Visit the app here: **[Exhibitly](https://exhibitly.netlify.app)**
 
 ---
 
