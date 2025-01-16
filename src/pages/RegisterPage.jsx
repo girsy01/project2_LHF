@@ -53,6 +53,11 @@ const RegisterPage = () => {
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </label>
+        <p className="warning-paragraph">
+          Warning: Do not use real passwords! The login system in this backend is purely a mock
+          implementation for demonstration purposes. Passwords are stored in plain text and are
+          visible in the db.json file.
+        </p>
         <button className="btn-dark">Register</button>
       </form>
     </div>
