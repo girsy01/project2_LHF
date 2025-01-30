@@ -2,6 +2,8 @@
 
 Welcome to the **Exhibitly Frontend Repository**, the React-powered user interface of our Single Page Application (SPA). Exhibitly enables users to curate their personal museum by adding and managing their favorite movies, books, and music. This repository houses the code for the web interface, designed with an intuitive and seamless user experience in mind.
 
+Link to Backend Repo: https://github.com/girsy01/project2_LHF_BE
+
 ---
 
 ## Features
@@ -55,11 +57,12 @@ root/
 ├── vite.config.js    # Vite configuration
 └── README.md         # Project documentation
 ```
+
 ---
 
 ## Deployment
 
-The frontend is hosted on Netlify and accessible to the public. 
+The frontend is hosted on Netlify and accessible to the public.
 
 Visit the app here: **[Exhibitly](https://exhibitly.netlify.app)**
 
